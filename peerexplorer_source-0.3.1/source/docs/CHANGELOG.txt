@@ -1,0 +1,6 @@
+Peerexplorer v0.3.1b
+---------------------
+
+Added net indicator in navbar
+Added countryflag in listview
+Some minor adjustments

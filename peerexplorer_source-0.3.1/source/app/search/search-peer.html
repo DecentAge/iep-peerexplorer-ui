@@ -1,0 +1,285 @@
+
+
+<div class="modal-header modal-default text-center" >
+    <div class="pull-left"><img src="images/logo_modal.png" style="margin-left:10px;margin-top:5px;height:50px;">
+    </div>
+    <h3 style="margin-right:70px;">
+        Node Details - {{node._id}}
+    </h3>
+</div>
+
+
+<div class="modal-body" ng-init="showResult()">
+
+    <div class="row">
+
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Single CPU Load <small>(%)</small></strong></div>
+                <div class="panel-body">
+
+                    <nvd3 options="chartOptions" data="chartData1"></nvd3>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Free Memory <small> (Bytes) </small> </strong></div>
+                <div class="panel-body">
+
+                      <nvd3 options="chartOptions" data="chartData2"></nvd3>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong> Processing Latency <small>(ms)</small></strong></div>
+                <div class="panel-body">
+                  <nvd3 options="chartOptions" data="chartData3"></nvd3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong> Active Peers <small>(#)</small></strong></div>
+                <div class="panel-body">
+                  <nvd3 options="chartOptions" data="chartData4"></nvd3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Gateway Services</strong></div>
+                <div class="panel-body">
+
+                  <span ng-bind-html='"IPFS"|gateways:node.gatewayIPFS'></span>
+                  <span ng-bind-html='"TenderMint"|gateways:node.gatewayTendermint'></span>
+                  <span ng-bind-html='"ZeroNet"|gateways:node.gatewayZeroNet'></span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Proxy Services</strong></div>
+                <div class="panel-body">
+
+                  <span ng-bind-html='"BTC"|proxies:node.proxyBTC'></span>
+                  <span ng-bind-html='"ETH"|proxies:node.proxyETH'></span>
+                  <span ng-bind-html='"LTC"|proxies:node.proxyLTC'></span>
+                  <span ng-bind-html='"XRP"|proxies:node.proxyXRP'></span>
+                  <span ng-bind-html='"MKT"|proxies:node.proxyMarket'></span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Storage Services</strong></div>
+                <div class="panel-body">
+
+                  <span ng-bind-html='"Mongodb"|storage:node.storageMongodb'></span>
+                  <span ng-bind-html='"RethinkDB"|storage:node.storageRethink'></span>
+                  <span ng-bind-html='"PostgreSQL"|storage:node.storagePSQL'></span>
+                  <span ng-bind-html='"MySQL"|storage:node.storageMySQL'></span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Community Services</strong></div>
+                <div class="panel-body">
+
+                    <span class="label label-default" > BX </span>&nbsp;
+                    <span class="label label-default" > PX </span>&nbsp;
+                    <span class="label label-default" > DC </span>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Node Info I</strong></div>
+                <div class="panel-body">
+
+                  <div class="col-lg-5">  API SSL  </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.apiSSL | isEnabled'></span>    </div>
+
+                  <div class="col-lg-5">  API CORS  </div>
+                  <div class="col-lg-7"> <span ng-bind-html='node.apiServerCORS | isEnabled'></span>    </div>
+
+                  <div class="col-lg-5">  API On  </div>
+                  <div class="col-lg-7"> <span ng-bind-html='node.apiServerEnable | isEnabled'></span>     </div>
+
+                  <div class="col-lg-5">  Timeout  </div>
+                  <div class="col-lg-7">  {{node.apiServerIdleTimeout}}  </div>
+
+                  <div class="col-lg-5">  API Port  </div>
+                  <div class="col-lg-7">  {{node.apiServerPort}}  </div>
+
+                  <div class="col-lg-5">  SSL Port  </div>
+                  <div class="col-lg-7">  {{node.apiServerSSLPort}}  </div>
+
+                  <div class="col-lg-5">  Version </div>
+                  <div class="col-lg-7">  {{node.version}}  </div>
+
+                  <div class="col-lg-5">  Autofee </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.correctInvalidFees | isEnabled'></span>    </div>
+
+                  <div class="col-lg-5">  Difficulty </div>
+                  <div class="col-lg-7">  {{node.cumulativeDifficulty}}  </div>
+
+                  <div class="col-lg-5">  Rollback </div>
+                  <div class="col-lg-7">  {{node.currentMinRollbackHeight}}  </div>
+
+               </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Node Info II </strong></div>
+                <div class="panel-body">
+
+                  <div class="col-lg-5">  Hallmarked </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.enableHallmarkProtection | isEnabled'></span>    </div>
+
+                  <div class="col-lg-5">  Download </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.isDownloading | isEnabled'></span>   </div>
+
+                  <div class="col-lg-5">  Scanning </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.isScanning | isEnabled'></span>    </div>
+
+                  <div class="col-lg-5">  Ledgertrim </div>
+                  <div class="col-lg-7">  {{node.ledgerTrimKeep}}  </div>
+
+                  <div class="col-lg-5">  Last Block </div>
+                  <div class="col-lg-7">  <small> {{node.lastBlock}} </small> </div>
+
+                  <div class="col-lg-5">  Feeder IP</div>
+                  <div class="col-lg-7">  {{node.lastBlockchainFeeder}}  </div>
+
+                  <div class="col-lg-5">  Feeder Blk </div>
+                  <div class="col-lg-7">  {{node.lastBlockchainFeederHeight}}  </div>
+
+                  <div class="col-lg-5">  PLTime </div>
+                  <div class="col-lg-7">  {{node.maxPrunableLifetime}}  </div>
+
+                  <div class="col-lg-5">  Rollback  </div>
+                  <div class="col-lg-7">  {{node.maxRollback}}  </div>
+
+                  <div class="col-lg-5">  MaxUTx  </div>
+                  <div class="col-lg-7">  {{node.maxUnconfirmedTransactions}}  </div>
+
+               </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Node Info III</strong></div>
+                <div class="panel-body">
+
+                  <div class="col-lg-5">  MaxUpload </div>
+                  <div class="col-lg-7">  {{node.maxUploadFileSize}}  </div>
+
+                  <div class="col-lg-5">  Hallmark </div>
+                  <div class="col-lg-7">  {{node.myHallmark || 'none'}}  </div>
+
+                   <div class="col-lg-5"> Active Peers </div>
+                  <div class="col-lg-7">  {{node.numberOfActivePeers}}  </div>
+
+                  <div class="col-lg-5">  Total Peers </div>
+                  <div class="col-lg-7">  {{node.numberOfPeers}}  </div>
+
+                  <div class="col-lg-5">  Blocks </div>
+                  <div class="col-lg-7">  {{node.numberOfBlocks}}  </div>
+
+                  <div class="col-lg-5">  Rank </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.rank | numericalString'></span>   </div>
+
+                  <div class="col-lg-5">  Websockets </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.useWebsocket | isEnabled'></span>     </div>
+
+                  <div class="col-lg-5">  SuperNode </div>
+                  <div class="col-lg-7">  <span ng-bind-html='node.superNodeEnable | isEnabled'></span>     </div>
+
+                  <div class="col-lg-5"> GeoIP </div>
+                  <div class="col-lg-7"> {{node.geoipfetched}}</div>
+
+                  <div class="col-lg-5">  Version </div>
+                  <div class="col-lg-7">  {{node.geoip.country_name}}  </div>
+
+
+               </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong> Node Info IV </strong></div>
+                <div class="panel-body">
+
+                  <div class="col-lg-5">  Processors  </div>
+                  <div class="col-lg-7">  {{node.availableProcessors}}  </div>
+
+                  <div class="col-lg-5">  Threads   </div>
+                  <div class="col-lg-7"> {{node.ThreadCount}}</div>
+
+                  <div class="col-lg-5"> Uptime </div>
+                  <div class="col-lg-7"> {{node.Uptime}}</div>
+
+                  <div class="col-lg-5"> OS Arch</div>
+                  <div class="col-lg-7"> {{node.osArch}}</div>
+
+                  <div class="col-lg-5"> OS Name</div>
+                  <div class="col-lg-7"> {{node.osName}}</div>
+
+                  <div class="col-lg-5"> OS Version</div>
+                  <div class="col-lg-7"> <small> {{node.osVersion}} </small> </div>
+
+                  <div class="col-lg-5"> Total Mem</div>
+                  <div class="col-lg-7"> {{node.totalMemory}}</div>
+
+                  <div class="col-lg-5"> Max Mem </div>
+                  <div class="col-lg-7"> {{node.maxMemory}}</div>
+
+                  <div class="col-lg-5"> Free Mem </div>
+                  <div class="col-lg-7"> {{node.freeMemory}}</div>
+
+                  <div class="col-lg-5"> CPU Load </div>
+                  <div class="col-lg-7"> {{node.SystemLoadAverage}}</div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="modal-footer modal-default">
+    <button ng-disabled="" class="btn btn-default pull-left" ng-click="cancel()">  <i class="fa fa-times" aria-hidden="true"></i> </button>
+</div>

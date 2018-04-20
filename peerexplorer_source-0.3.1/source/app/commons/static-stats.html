@@ -1,0 +1,86 @@
+
+<div class="col-lg-12" ng-init="getStats()" ng-controller="StatsCtrl">
+
+
+    <cc-auto-refresh-fn
+      refresh-fn="getStats()"
+      refresh-interval="options.REFRESH_INTERVAL_MILLI_SECONDS"
+      >
+    </cc-auto-refresh-fn>
+
+
+    <div class="row text-center">
+
+        <div class="col-lg-2 col-md-4 col-sm-4">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+                   <i class="fa fa-signal" aria-hidden="true"></i>&nbsp;Open API
+                </uib-accordion-heading>
+                <h4> {{stats.apiEnabled}}  </h4>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-4">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+                   <i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;Syncing
+                </uib-accordion-heading>
+                <h4>  {{stats.downloading}}  </h4>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-4">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+                   <i class="fa fa-feed" aria-hidden="true"></i>&nbsp;Total Nodes
+                </uib-accordion-heading>
+                <h4>  {{stats.totalNodes}} </h4>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-4">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+                   <i class="fa fa-expeditedssl" aria-hidden="true"></i>&nbsp;SSL API
+                </uib-accordion-heading>
+                <h4>  {{stats.apiSSL}}  </h4>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div ng-controller="FooterController" ng-init="init()">
+
+          <div class="col-lg-2 col-md-4 col-sm-4">
+            <uib-accordion close-others="false">
+                <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                  <uib-accordion-heading>
+                     <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;Latest Version
+                  </uib-accordion-heading>
+                  <h4>  {{topNode.version}}  </h4>
+                </div>
+            </uib-accordion>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-sm-4">
+            <uib-accordion close-others="false">
+                <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                  <uib-accordion-heading>
+                     <i class="fa fa-compass" aria-hidden="true"></i>&nbsp;Top Node
+                  </uib-accordion-heading>
+                  <h4>  <div compile="topNode._id | searchTerm"> </h4>
+                </div>
+            </uib-accordion>
+          </div>
+
+        </div>
+
+    </div>
+</div>
+<br>

@@ -1,0 +1,26 @@
+This is a list of the third party components.
+
+Font Awesome
+http://fontawesome.io/
+
+Awesome Bootstrap Checkbox
+https://github.com/flatlogic/awesome-bootstrap-checkbox
+
+Angular-Datatables
+http://l-lin.github.io/angular-datatables/archives/#!/welcome
+
+DataTables
+https://datatables.net/manual/styling/bootstrap
+
+NVD3 Re-usable charts for d3.js
+http://nvd3.org/
+
+Angular-Busy
+https://github.com/cgross/angular-busy
+
+Angular-Translate
+https://github.com/angular-translate/angular-translate
+
+AngularJS Multi-Step Form Using UI Router
+https://scotch.io/tutorials/angularjs-multi-step-form-using-ui-router
+

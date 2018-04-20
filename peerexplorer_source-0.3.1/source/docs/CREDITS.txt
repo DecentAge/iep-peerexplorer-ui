@@ -1,0 +1,27 @@
+
+Open Source Credits
+-------------------
+
+We use alot of open source software at Infinity. We would like to send a big thank you to the 
+following projects and the thousands of contributors that help make open source great!
+
+This application uses Open Source components. You can find the source code of their open source 
+projects along with license information/link below. We acknowledge and are grateful to these 
+developers for their contributions to open source. Take a look into 3RD-PARTY-LICENSES.txt
+for additional components used.
+
+AngularJS
+https://angularjs.org/
+
+Bootstrap
+http://getbootstrap.com/
+
+jQuery
+https://jquery.com/
+
+UI Bootstrap
+https://angular-ui.github.io/bootstrap/
+
+Node.js
+https://nodejs.org/en/
+

@@ -1,0 +1,19 @@
+<style>
+  .modal .modal-dialog { max-width: 768px; }
+</style>
+
+<div class="modal-header modal-default text-center" >
+    <div class="pull-left"><img src="images/logo_modal.png" style="margin-left:10px;margin-top:5px;height:50px;">
+    </div>
+    <h3 style="margin-right:70px;">
+        Search IP Error
+    </h3>
+</div>
+
+<div class="modal-body text-danger text-center" ng-init="showResult()">
+    <h4> {{message}} </h4>
+</div>
+
+<div class="modal-footer modal-default">
+    <button ng-disabled="" class="btn btn-default pull-left" ng-click="cancel()">  <i class="fa fa-times" aria-hidden="true"></i> </button>
+</div>
