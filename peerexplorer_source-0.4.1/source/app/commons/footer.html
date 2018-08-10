@@ -1,0 +1,20 @@
+<div class="footer container-fluid">
+	<div class="col-md-7 col-sm-12 col-xs-12">
+		<span class="navbar-brand pull-left">
+			<span class="label label-xs">
+				 <span class="footerTex">Infinity PeerExplorer </span> <br> 
+				 This website is owned by the <span style="color:#ea555d;"> Infinity community </span> and managed by the <span style="color:#ea555d;"> Infinity Foundation. </span>
+			</span>
+		</span>
+	</div>
+	<div class="col-md-5 pull-right col-sm-12 col-xs-12" ng-controller="FooterController" ng-init="init()">
+
+		<cc-auto-refresh-fn refresh-fn="init()" refresh-interval="options.REFRESH_INTERVAL_MILLI_SECONDS"></cc-auto-refresh-fn>
+
+		<span class="navbar-brand text-right pull-right">
+			<span class="footerTex label label-xs">Top Node : {{topNode._id}}</span> <br>
+			<span class="label label-xs">Connected : {{connectedURL}}</span>
+			<span class="label label-xs">Version : {{options.VERSION}}</span>
+        </span>
+	</div>
+</div>

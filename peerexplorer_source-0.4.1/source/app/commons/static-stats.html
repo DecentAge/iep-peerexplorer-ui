@@ -1,0 +1,93 @@
+
+<div class="col-lg-12" ng-init="getStats()" ng-controller="StatsCtrl">
+
+
+    <cc-auto-refresh-fn
+      refresh-fn="getStats()"
+      refresh-interval="options.REFRESH_INTERVAL_MILLI_SECONDS"
+      >
+    </cc-auto-refresh-fn>
+
+
+    <div class="row text-center peer-blocks" style="margin:0 -5px 0 -5px;">
+
+        <div class="col-lg-2 col-md-4 col-sm-4 peer-explorer">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+                    <span class="peer-icon icon-Open_API"></span>
+                   <p>Open API</p>
+                </uib-accordion-heading>
+                <p class="box-heading"> {{stats.apiEnabled}}  </p>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-4 peer-explorer">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+
+                   <span class="peer-icon icon-Syncing"></span>
+                   <p>Syncing</p>
+                </uib-accordion-heading>
+                <p class="box-heading">  {{stats.downloading}}  </p>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-4 peer-explorer">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+                   <span class=" peer-icon icon-Total_Nodes"></span>
+                   <p>Total Nodes</p>
+                </uib-accordion-heading>
+                <p class="box-heading">  {{stats.totalNodes}} </p>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-4 peer-explorer">
+          <uib-accordion close-others="false">
+              <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                <uib-accordion-heading>
+                   <span class="peer-icon icon-SSL_API"></span>
+                   <p>SSL API</p>
+                </uib-accordion-heading>
+                <p class="box-heading">  {{stats.apiSSL}}  </p>
+              </div>
+          </uib-accordion>
+        </div>
+
+        <div ng-controller="FooterController" ng-init="init()">
+
+          <div class="col-lg-2 col-md-4 col-sm-4 peer-explorer">
+            <uib-accordion close-others="false">
+                <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                  <uib-accordion-heading>
+                     <span class="peer-icon icon-Latest_Version"></span>
+                     <p>Latest Version</p>
+                  </uib-accordion-heading>
+                  <p class="box-heading">  {{topNode.version}}  </p>
+                </div>
+            </uib-accordion>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-sm-4 peer-explorer">
+            <uib-accordion close-others="false">
+                <div uib-accordion-group class="panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:#FFFFFF;" >
+                  <uib-accordion-heading>
+                     <span class="peer-icon icon-Top_Node"></span>
+                     <p>Top Node</p>
+                  </uib-accordion-heading>
+                  <div class="top-node" compile="topNode._id | searchTerm">
+                </div>
+            </uib-accordion>
+          </div>
+
+        </div>
+
+    </div>
+</div>
+<br>
