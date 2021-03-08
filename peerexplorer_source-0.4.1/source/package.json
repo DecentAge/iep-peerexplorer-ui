@@ -4,12 +4,15 @@
   "description": "Peer Explorer",
   "main": "app.js",
   "scripts": {
+    "build": "npm install && bower install && gulp build",
+    "start": "gulp server",
     "test": "grunt test"
   },
   "author": "IEPTeam",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.14.0",
+    "bower": "1.8.8",
+    "browser-sync": "2.14.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
