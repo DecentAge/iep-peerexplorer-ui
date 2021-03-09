@@ -34,7 +34,9 @@
     "datatables.net-responsive-dt": "^2.1.1",
     "ng-country-flags": "^1.0.5",
     "flag-icon-css": "2.4.0"
-
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "^1.5.8"
+  }
 }
