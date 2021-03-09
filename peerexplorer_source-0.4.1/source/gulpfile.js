@@ -10,7 +10,7 @@ var reload = plugins.browserSync.reload;
 
 var config = {
     serverPort: 10000,
-    browser: 'firefox',
+    browser: 'OTHER',
     app: 'app',
     dist: 'dist',
     html: 'app/**/*.html',
@@ -55,6 +55,7 @@ gulp.task('watch:html', function () {
 
 gulp.task('browser-sync', function () {
     plugins.browserSync({
+    	open: false,
         server: {
             baseDir: config.app,
             routes: {
