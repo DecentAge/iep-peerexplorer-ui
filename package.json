@@ -1,5 +1,5 @@
 {
-  "name": "peer",
+  "name": "iep-peerexplorer-ui",
   "version": "1.1.0",
   "description": "Peer Explorer",
   "main": "app.js",
