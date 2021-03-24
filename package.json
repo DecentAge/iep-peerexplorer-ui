@@ -4,7 +4,7 @@
   "description": "Peer Explorer",
   "main": "app.js",
   "scripts": {
-    "build": "npm install && bower install && gulp build",
+    "build": "npm install && bower install --allow-root && gulp build",
     "start": "gulp server",
     "test": "grunt test"
   },
