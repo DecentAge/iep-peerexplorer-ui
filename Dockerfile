@@ -5,7 +5,7 @@ WORKDIR /app
 # workaround until the libary get get executed locally
 
 RUN npm install -g bower@1.8.8
-RUN npm install -g gulp@3.9.1
+RUN npm install -g gulp@4.0.2
 RUN npm link gulp --force
 COPY ["package*.json", "gulpfile.js", ".jshintrc", "nginx.conf", "bower.json", "./"]
 RUN npm install
