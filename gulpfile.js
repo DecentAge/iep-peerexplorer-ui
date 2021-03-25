@@ -79,13 +79,13 @@ gulp.task('server:dist', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch([config.styles], ['watch:styles']);
-    gulp.watch([config.scripts], ['watch:scripts']);
-    gulp.watch([config.html], ['watch:html']);
+    gulp.watch(config.styles, gulp.series('watch:styles'));
+    gulp.watch(config.scripts, gulp.series('watch:scripts'));
+    gulp.watch(config.html, gulp.series('watch:html'));
 });
 
-gulp.task('server', ['watch:scripts', 'watch:styles', 'watch:html', 'browser-sync', 'watch']);
-gulp.task('default', ['server']);
+gulp.task('server', gulp.parallel('watch:scripts', 'watch:styles', 'watch:html', 'browser-sync', 'watch'));
+gulp.task('default', gulp.series('server'));
 
 gulp.task('clean:dist', function () {
     return plugins.del(['dist/*']);
@@ -130,6 +130,6 @@ gulp.task('copy:images', function() {
 });
 
 
-gulp.task('build', ['clean:dist'], function () {
-    plugins.runSequence(['copy:html','copy:images','copy:fonts','copy:flags', 'index:build']);
-});
+gulp.task('build', gulp.series('clean:dist', gulp.series('copy:html','copy:images','copy:fonts','copy:flags', 'index:build')));//, function () {
+//    plugins.runSequence(['copy:html','copy:images','copy:fonts','copy:flags', 'index:build']);
+//});
