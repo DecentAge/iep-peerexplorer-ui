@@ -1,17 +1,20 @@
 {
-  "name": "peer",
+  "name": "iep-peerexplorer-ui",
   "version": "1.1.0",
   "description": "Peer Explorer",
   "main": "app.js",
   "scripts": {
+    "build": "npm install && bower install --allow-root && gulp build",
+    "start": "gulp server",
     "test": "grunt test"
   },
   "author": "IEPTeam",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.14.0",
+    "bower": "1.8.8",
+    "browser-sync": "^2.26.14",
     "del": "^2.2.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-bower-src": "^0.1.0",
     "gulp-concat": "^2.6.0",
@@ -22,7 +25,7 @@
     "gulp-minify-css": "^1.2.4",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.0",
