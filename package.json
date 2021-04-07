@@ -11,7 +11,7 @@
   "author": "IEPTeam",
   "license": "ISC",
   "devDependencies": {
-    "bower": "1.8.8",
+    "bower": "1.8.12",
     "browser-sync": "^2.26.14",
     "del": "^2.2.2",
     "gulp": "^4.0.2",
