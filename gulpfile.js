@@ -62,9 +62,9 @@ gulp.task('browser-sync', function () {
                 '/bower_components': 'bower_components'
             }
         },
-        port: config.serverPort,
+        port: process.env.PORT,
         browser: config.browser,
-
+        startPath: process.env.PUBLIC_PATH+'/'
     });
 });
 
