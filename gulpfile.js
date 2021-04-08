@@ -64,7 +64,7 @@ gulp.task('browser-sync', function () {
         },
         port: process.env.PORT,
         browser: config.browser,
-        startPath: process.env.PUBLIC_PATH+'/'
+        startPath: process.env.PUBLIC_PATH+'/#!/peers'
     });
 });
 
