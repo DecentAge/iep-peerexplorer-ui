@@ -1,6 +1,5 @@
 # build environment
 FROM node:10 AS builder
-ENV NODE_ENV=production
 WORKDIR /app
 RUN npm install -g bower@1.8.8
 RUN npm install -g gulp@4.0.2
