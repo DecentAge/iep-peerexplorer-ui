@@ -12,6 +12,7 @@ RUN npm run build
 
 # production environment
 FROM nginx:1.18
+ENV NGINX_PATH=/
 COPY --from=builder /app/dist /usr/share/nginx/html/
 COPY --from=builder /app/default.conf.template /etc/nginx/templates/default.conf.template
 EXPOSE 80
