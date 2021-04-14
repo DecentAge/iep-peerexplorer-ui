@@ -4,10 +4,10 @@
   "description": "Peer Explorer",
   "main": "app.js",
   "scripts": {
-    "prestart": "npm install",
     "gulp": "gulp",
-    "bower": "bower",
-    "build": "npm run bower install && npm run gulp build",
+    "bower": "bower --allow-root",
+    "prestart": "npm install && npm run bower install",
+    "build": "npm run gulp build",
     "start": "npm run gulp server",
     "test": "grunt test"
   },
