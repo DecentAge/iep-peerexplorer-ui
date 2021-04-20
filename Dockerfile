@@ -1,11 +1,12 @@
 # build environment
 FROM node:10 AS builder
 WORKDIR /app
-RUN npm install -g bower@1.8.8
 RUN npm install -g gulp@4.0.2
 RUN npm link gulp --force
-COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "bower.json", "./"]
+COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "./"]
 RUN npm install
+COPY ["bower.json", "./"]
+RUN npm run bower install
 
 COPY /app /app/app 
 RUN npm run build
