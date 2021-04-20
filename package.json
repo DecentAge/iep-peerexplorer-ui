@@ -35,7 +35,7 @@
     "jshint": "^2.9.3",
     "jshint-stylish": "^2.2.1",
     "lazypipe": "^1.0.1",
-    "run-sequence": "^1.2.2",
+    "run-sequence": "^2.2.1",
     "envsub": "4.0.7"
   }
 }
