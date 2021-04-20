@@ -7,8 +7,7 @@ COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "./"
 RUN npm install
 COPY ["bower.json", "./"]
 RUN npm run bower install
-
-COPY /app /app/app 
+COPY /app /app/app
 RUN npm run build
 
 # production environment
