@@ -54,6 +54,8 @@ gulp.task('watch:html', function () {
 });
 
 gulp.task('browser-sync', function () {
+	execSync("envsub app/env.config.js.template app/env.config.js");
+	
     plugins.browserSync({
     	open: false,
         server: {
@@ -129,7 +131,13 @@ gulp.task('copy:images', function() {
         .pipe(gulp.dest(config.dist + '/images'));
 });
 
+gulp.task('copy:config', function() {
+    return gulp.src(config.app + '/env.config.js')
 
-gulp.task('build', gulp.series('clean:dist', gulp.series('copy:html','copy:images','copy:fonts','copy:flags', 'index:build')));//, function () {
+        .pipe(gulp.dest(config.dist));
+});
+
+
+gulp.task('build', gulp.series('clean:dist', gulp.series('copy:config','copy:html','copy:images','copy:fonts','copy:flags', 'index:build')));//, function () {
 //    plugins.runSequence(['copy:html','copy:images','copy:fonts','copy:flags', 'index:build']);
 //});
