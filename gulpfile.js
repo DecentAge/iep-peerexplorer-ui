@@ -1,3 +1,5 @@
+const { execSync } = require('child_process');
+
 var gulp = require('gulp'),
     plugins = require('gulp-load-plugins')({
         pattern: '*',
