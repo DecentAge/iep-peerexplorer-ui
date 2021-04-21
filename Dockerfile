@@ -3,7 +3,7 @@ FROM node:10 AS builder
 WORKDIR /app
 RUN npm install -g gulp@4.0.2
 RUN npm link gulp --force
-COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "./"]
+COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "30-nginx-iep-startup-script.sh", "./"]
 RUN npm install
 COPY ["bower.json", "./"]
 RUN npm run bower install
