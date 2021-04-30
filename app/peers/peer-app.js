@@ -18,7 +18,7 @@ angular.module('peers',
     ['restangular', 'datatables', 'datatables.bootstrap', 'ui.bootstrap', 'ui.router', 'nvd3', 'ngSanitize','cc.autorefresh', 'ng-countryflags']);
 
 angular.module('peers').constant('peerConfig', {
-  'apiUrl': 'http://185.103.75.217:8888/',
+  'apiUrl': window.getEnvConfig("PEER_EXPLORER_API_URL") || 'http://185.103.75.217:8888/',
   //Replace IP with your own VPS
   'peerEndPoint': 'api/nodes'
 });

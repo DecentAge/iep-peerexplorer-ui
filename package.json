@@ -4,8 +4,11 @@
   "description": "Peer Explorer",
   "main": "app.js",
   "scripts": {
-    "build": "npm install && bower install --allow-root && gulp build",
-    "start": "gulp server",
+    "gulp": "gulp",
+    "bower": "bower --allow-root",
+    "prestart": "npm install && npm run bower install",
+    "build": "npm run gulp build",
+    "start": "npm run gulp server",
     "test": "grunt test"
   },
   "author": "IEPTeam",
@@ -32,6 +35,7 @@
     "jshint": "^2.9.3",
     "jshint-stylish": "^2.2.1",
     "lazypipe": "^1.0.1",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^1.2.2",
+    "envsub": "4.0.7"
   }
 }
