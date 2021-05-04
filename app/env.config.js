@@ -1,6 +1,6 @@
 window.envConfig = {
 	AUTO_PAGE_REFRESH_INTERVAL: 30000,
-	PEER_EXPLORER_API_URL: 'tbd'
+	PEER_EXPLORER_API_URL: 'http://localhost/peerexplorer-backend/'
 }
 
 window.getEnvConfig = function(key) {
