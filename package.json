@@ -1,13 +1,13 @@
 {
   "name": "iep-peerexplorer-ui",
-  "version": "5.0.6",
+  "version": "0.3.0",
   "description": "Peer Explorer",
   "main": "app.js",
   "scripts": {
     "gulp": "gulp",
     "bower": "bower --allow-root",
     "prestart": "npm install && npm run bower install",
-    "update-version": "npm version $npm_config_release_version --allow-same-version --git-tag-version false && envsub --env RELEASE_VERSION=$npm_config_release_version app/env.config.js.template app/env.config.js.template",
+    "update-version": "echo $PWD && npm version $npm_config_release_version --allow-same-version --git-tag-version false && envsub --env RELEASE_VERSION=$npm_config_release_version app/env.config.js.template",
     "build": "npm run gulp build",
     "start": "npm run gulp server",
     "test": "grunt test"
