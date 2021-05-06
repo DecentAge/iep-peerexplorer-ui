@@ -1,4 +1,6 @@
 window.envConfig = {
+    RELEASE_VERSION: '',
+
 	AUTO_PAGE_REFRESH_INTERVAL: 30000,
 	PEER_EXPLORER_API_URL: 'http://localhost/peerexplorer-backend/'
 }
