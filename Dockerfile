@@ -1,10 +1,11 @@
 # build environment
 FROM node:10 AS builder
+ARG RELEASE_VERSION
 WORKDIR /app
 RUN npm install -g gulp@4.0.2
 RUN npm link gulp --force
 COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "30-nginx-iep-startup-script.sh","release-version.txt", "./"]
-RUN npm version $(cat release-version.txt) --allow-same-version --git-tag-version false
+RUN npm run update-version --release_version=$RELEASE_VERSION
 RUN npm install
 COPY ["bower.json", "./"]
 RUN npm run bower install

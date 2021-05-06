@@ -7,6 +7,7 @@
     "gulp": "gulp",
     "bower": "bower --allow-root",
     "prestart": "npm install && npm run bower install",
+    "update-version" : "version $RELEASE_VERSION --allow-same-version --git-tag-version false && envsub --env $npm_release_version",
     "build": "npm run gulp build",
     "start": "npm run gulp server",
     "test": "grunt test"
