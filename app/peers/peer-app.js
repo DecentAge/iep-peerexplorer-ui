@@ -24,8 +24,8 @@ angular.module('peers').constant('peerConfig', {
 });
 
 angular.module('peers').constant('PEER_CONSTANTS', {
-    'REFRESH_INTERVAL_MILLI_SECONDS': 60000,
-    'VERSION':'0.4.1',
+    'REFRESH_INTERVAL_MILLI_SECONDS': window.getEnvConfig("CONSTANTS_REFRESH_INTERVAL") || 60000,
+    'VERSION': window.getEnvConfig("RELEASE_VERSION") || '0.4.1',
 });
 
 angular.module('peers').config(['RestangularProvider', 'peerConfig', '$stateProvider', '$urlRouterProvider',
