@@ -1,9 +1,11 @@
 ** Release 0.3.0 **
-- Minimale Testumgebung  für das EP  Test- und Mainnet(eigener Genesis)
-- Produktion 10 Node verteilt auf 3 RZ (Hetzner)
-- Minimales Security hardening 
-- Parallelbetrieb zum existierenden Blockchain Verbund (noch keine Kontrolle über das Netz, min. 60'000 XIN)
-- Cloudflare set up mit neuer DNS
-- Minimaler Regressionstest in Test- und Produktion
-
-Versions & Release Management (3.0.0; must, es darf nicht die gleiche versionnummer sein)
+- added a start script to npm to simplify usage to package.json
+- resolve angular version manually
+- Add missing jshintrc and prevent auto browser opening in docker container
+- moved base app folder to root
+- renamed npm package name
+- added build docker script
+- added dockerfile
+- upgrade dependencies with high vulnerability, adjust gulpfile
+- upgrade node sass and global gulp version
+- added github action to build and publish a docke image to dockerhub
