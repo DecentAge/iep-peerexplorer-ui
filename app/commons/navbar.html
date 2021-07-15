@@ -28,8 +28,12 @@
                                     </div>
                                 </div>
                             </form>
-                            <span class="btn btn-infinity btn-md navbar-btn" type="label" style="margin-right:0px;" popover-placement="{{isCollapsed ? 'bottom' : 'right'}}" popover-trigger="'mouseenter'" uib-popover="Connected to MAINNET">
+
+                            <span ng-if="options.NETWORK_ENVIRONMENT === 'mainnet'" class="btn btn-infinity btn-md navbar-btn" type="label" style="margin-right:0px;" popover-placement="{{isCollapsed ? 'bottom' : 'right'}}" popover-trigger="'mouseenter'" uib-popover="Connected to MAINNET">
                                 Mainnet
+                            </span>
+                            <span ng-if="options.NETWORK_ENVIRONMENT === 'testnet'" class="btn btn-infinity btn-md navbar-btn" type="label" style="margin-right:0px;" popover-placement="{{isCollapsed ? 'bottom' : 'right'}}" popover-trigger="'mouseenter'" uib-popover="Connected to TESTNET">
+                                Testnet
                             </span>
                         </li>
                     </ul>
