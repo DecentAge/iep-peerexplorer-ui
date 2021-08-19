@@ -48,7 +48,7 @@ angular.module('peers').controller('PeersCtrl',
                     },
 
                     color: function () {
-                        return '#9e9e9e';
+                        return '#666';
                     },
 
 
@@ -96,22 +96,40 @@ angular.module('peers').controller('PeersCtrl',
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('rank').withTitle('Rank').notSortable()
                 .renderWith(function (data, type, row, meta) {
-                    return (data).toFixed(2);
+                    if (!row.state) {
+                        return "n/a";
+                    }
+                    return (row.state.rank).toFixed(2);
                 }),
 
                 DTColumnBuilder.newColumn('_id').withTitle('IP').notSortable()
                   .renderWith(function (data, type, row, meta) {
+                      if (!row.state) {
+                          return data;
+                      }
+
                     return '<a type="button" class="btn btn-infinity btn-xs" style="min-width:100%;" ng-controller="SearchCtrl" ng-click="searchIP(\'' +
                     row._id + '\' )"></strong>' + data + '</strong></a>';
                   }),
 
-                DTColumnBuilder.newColumn('numberOfActivePeers').withTitle('Peers').notSortable(),
+                DTColumnBuilder.newColumn('numberOfActivePeers').withTitle('Peers').notSortable()
+                    .renderWith(function (data, type, row, meta) {
+                        if (!row.state) {
+                            return "n/a";
+                        }
+
+                        return row.state.numberOfPeers;
+                    }),
 
                 DTColumnBuilder.newColumn('SystemLoadAverage').withTitle('CPU').notSortable()
                     .renderWith(function (data, type, row, meta) {
 
-                        var numCPU = parseInt(row.availableProcessors);
-                        var loadAvg = parseFloat(row.SystemLoadAverage);
+                        if (!row.state) {
+                            return "n/a";
+                        }
+
+                        var numCPU = parseInt(row.state.availableProcessors);
+                        var loadAvg = parseFloat(row.state.SystemLoadAverage);
                         var loadPct   = (loadAvg * 100 /  (numCPU * 100) ) * 100;
 
                         return (loadPct.toFixed(2) + ' %');
@@ -121,16 +139,26 @@ angular.module('peers').controller('PeersCtrl',
                 DTColumnBuilder.newColumn('history_SystemLoadAverage').withTitle('CPU Load History').notSortable()
                     .renderWith(function (data, type, row, meta) {
 
+                        if (!row.state) {
+                            return "n/a";
+                        }
+
                         var tmpArr = [];
 
-                        for (var i = 0; i < data.length - 30; i++) {
+                        var field = row.state.history_SystemLoadAverage;
 
-                            var loadAvg = parseFloat(data[i]);
+                        console.log(field)
+
+                        for (var i = 0; i < field.length - 30; i++) {
+
+                            var loadAvg = parseFloat(field[i]);
                             var loadPct = (loadAvg * 100 / (1 * 100) ) * 100;
 
                             tmpArr.push({label: i, value: loadPct});
 
                         }
+
+                        console.log("VALUES", tmpArr)
 
                         var dd = [{values: []}];
                         dd[0].values = tmpArr;
@@ -142,45 +170,54 @@ angular.module('peers').controller('PeersCtrl',
                 DTColumnBuilder.newColumn('lastBlockchainFeeder').withTitle('Last Feeder').notSortable()
                 .renderWith(function (data, type, row, meta) {
                   return '<a class="pointer" ng-controller="SearchCtrl" ng-click="searchIP(\'' +
-                  data + '\' )">' + data + '</a>';
+                  row.state.lastBlockchainFeeder + '\' )">' + row.state.lastBlockchainFeeder + '</a>';
                 }),
 
-                DTColumnBuilder.newColumn('numberOfBlocks').withTitle('Height').notSortable(),
-
-                DTColumnBuilder.newColumn('version').withTitle('Version').notSortable(),
-
-                DTColumnBuilder.newColumn('superNodeEnable').withTitle('Services').notSortable()
+                DTColumnBuilder.newColumn('numberOfBlocks').withTitle('Height').notSortable()
                     .renderWith(function (data, type, row, meta) {
+                        if (!row.state) {
+                            return "n/a";
+                        }
 
-                        return getTickMarkUiModel(row.superNodeEnable, 'SuperNode Services Enabled');
+                        return row.state.numberOfBlocks;
+                    }),
+
+                DTColumnBuilder.newColumn('version').withTitle('Version').notSortable()
+                    .renderWith(function (data, type, row, meta) {
+                        return row.version;
                     }),
 
                 DTColumnBuilder.newColumn('enableHallmarkProtection').withTitle('Marked').notSortable()
                     .renderWith(function (data, type, row, meta) {
 
-                        return getTickMarkUiModel(row.enableHallmarkProtection, 'Hallmark Protected');
+                        return getTickMarkUiModel(row.services.includes("HALLMARK"), 'Hallmark Protected');
                     }),
 
                 DTColumnBuilder.newColumn('apiServerEnable').withTitle('API').notSortable()
                     .renderWith(function (data, type, row, meta) {
 
-                        return getTickMarkUiModel(row.apiServerEnable, 'API Enabled');
+                        return getTickMarkUiModel(row.services.includes("API"), 'API Enabled');
                     }),
 
                 DTColumnBuilder.newColumn('geoip').withTitle('Country').notSortable()
                     .renderWith(function (data, type, row, meta) {
-                      var toolTipText =  data.country_name;
-                      return '<countryflag country="' + data.country_code.toLowerCase() + '" isSquare="false" uib-tooltip="' + toolTipText  + '"></countryflag>';
+                        if (row.geoip) {
+                            var toolTipText = row.geoip.country_name;
+                            return '<countryflag country="' + row.geoip.country_code.toLowerCase() + '" isSquare="false" uib-tooltip="' + toolTipText + '"></countryflag>';
+                        }
+                        return "n/a";
                     }),
+
+
             ];
 
             function getTickMarkUiModel(value, toolTipText) {
                 if (value === true) {
-                    return '<small> <span tooltip-placement="top" uib-tooltip="' + toolTipText +
-                        '" class="glyphicon glyphicon-ok" style="color:black"></span></small>';
+                    return '<span tooltip-placement="top" uib-tooltip="' + toolTipText +
+                        '" class="iep-icon-checkbox-checked " style="color:black"></span>';
                 } else {
-                    return '<small> <span tooltip-placement="top" uib-tooltip="' + toolTipText +
-                        '" class="glyphicon glyphicon-remove" style="color:black"></span></small>';
+                    return '<span tooltip-placement="top" uib-tooltip="' + toolTipText +
+                        '" class="iep-icon-checkbox-unchecked " style="color:black"></span>';
                 }
             }
 

@@ -1,9 +1,11 @@
 window.envConfig = {
     RELEASE_VERSION: '',
+    
+    NETWORK_ENVIRONMENT: 'testnet',
 
 	AUTO_PAGE_REFRESH_INTERVAL: 30000,
 	CONSTANTS_REFRESH_INTERVAL: 60000,
-	PEER_EXPLORER_API_URL: 'http://localhost/peerexplorer-backend/'
+	PEER_EXPLORER_API_URL: 'http://node-1/peerexplorer-backend/'
 }
 
 window.getEnvConfig = function(key) {

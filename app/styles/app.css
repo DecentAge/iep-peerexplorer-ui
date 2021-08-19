@@ -441,10 +441,10 @@ p.box-heading {
   background-color: #fff;
   font-family: Montserrat;
   font-weight: 600;
-  color: #9d9faf; }
+  color: #666; }
 
 .active-node-header .panel-body table tbody tr td span {
-  color: #9d9faf !important;
+  color: #666 !important;
   display: inline-block; }
 
 .active-node-header .panel-body table tbody tr td a {
@@ -517,3 +517,17 @@ p.box-heading {
     background: linear-gradient(to right, #ea464b, #f18521);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; }
+
+.iep-icon-checkbox-checked {
+  background-image: url(../images/339-checkbox-checked.png);
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  display: inline-block; }
+
+.iep-icon-checkbox-unchecked {
+  background-image: url(../images/340-checkbox-unchecked.png);
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  display: inline-block; }

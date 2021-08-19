@@ -238,8 +238,8 @@ table.dataTable, table.dataTable.no-footer{
     .panel-body table thead tr th{font-size:12px; font-weight: 800; border-color: #ececed !important;  }
     .panel-body table tbody tr td, .panel-body table thead tr th{padding:16px; border-color: #eff5f8; text-transform: uppercase;}
     .panel-collapse{padding: 32px; background-color: #fff; border-radius: 6px !important;}
-    .panel-body table tbody tr td, .panel-body table tbody tr td a.pointer{ font-size:12px; background-color:#fff ; font-family:Montserrat; font-weight:600; color:#9d9faf; }
-    .panel-body table tbody tr td span{color:#9d9faf !important; display:inline-block;}
+    .panel-body table tbody tr td, .panel-body table tbody tr td a.pointer{ font-size:12px; background-color:#fff ; font-family:Montserrat; font-weight:600; color:#666; }
+    .panel-body table tbody tr td span{color:#666 !important; display:inline-block;}
     .panel-body table tbody tr td a { color:#e72d45; background-color: transparent; font-family:Montserrat; font-weight:600;}
     
     span{ 
@@ -314,6 +314,22 @@ table.dataTable, table.dataTable.no-footer{
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+}
+
+.iep-icon-checkbox-checked {
+    background-image: url(../images/339-checkbox-checked.png);
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    display: inline-block;
+}
+
+.iep-icon-checkbox-unchecked {
+    background-image: url(../images/340-checkbox-unchecked.png);
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    display: inline-block;
 }
 
 // peer icon css ends

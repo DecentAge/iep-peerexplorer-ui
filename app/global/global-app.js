@@ -35,11 +35,11 @@ angular.module('peerExplorer').filter('isEnabled', ['$sce', function ($sce) {
     return function (val) {
         switch (val) {
             case true:
-                return '<small> <span class="glyphicon glyphicon-ok" style="color:black"></span> </small>';
+                return '<span class="iep-icon-checkbox-checked" style="color:black"></span>';
             case false:
-                return '<small> <span class="glyphicon glyphicon-remove" style="color:black"></span> </small>';
+                return '<span class="iep-icon-checkbox-unchecked" style="color:black"></span>';
             default:
-                return '<small> <span class="glyphicon glyphicon-remove" style="color:black"></span> </small>';
+                return '<span class="iep-icon-checkbox-unchecked" style="color:black"></span>';
         }
     };
 }]);
@@ -193,5 +193,16 @@ angular.module('peerExplorer').filter('numericalString', ['$sce',  function ($sc
             val = 0;
         }
         return val.toLocaleString('en-US', {minimumFractionDigits: 2});
+    };
+}]);
+
+angular.module('peerExplorer').filter('bytesToMB', ['$sce',  function ($sce) {
+    return function (val) {
+        if (!val) {
+            val = 0;
+        } else {
+            val = Math.floor(val / 1024 / 1024);
+        }
+        return val + " MB";
     };
 }]);

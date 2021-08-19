@@ -192,10 +192,10 @@ angular.module('search')
                     $scope.node = params.node;
 
                     $scope.chartOptions = $scope.chartOptions;
-                    $scope.chartData1 =  buildChartSystemLoadAverage(  params.node.history_SystemLoadAverage );
-                    $scope.chartData2 =  buildChartDataArray(  params.node.history_freeMemory );
-                    $scope.chartData3 =  buildChartDataArray(  params.node.history_requestProcessingTime );
-                    $scope.chartData4 =  buildChartDataArray(  params.node.history_numberOfActivePeers );
+                    $scope.chartData1 =  buildChartSystemLoadAverage(  params.node.state.history_SystemLoadAverage );
+                    $scope.chartData2 =  buildChartDataArray(  params.node.state.history_freeMemory );
+                    $scope.chartData3 =  buildChartDataArray(  params.node.state.history_requestProcessingTime );
+                    $scope.chartData4 =  buildChartDataArray(  params.node.state.history_numberOfActivePeers );
                 };
 
 
