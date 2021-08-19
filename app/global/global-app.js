@@ -44,6 +44,19 @@ angular.module('peerExplorer').filter('isEnabled', ['$sce', function ($sce) {
     };
 }]);
 
+angular.module('peerExplorer').filter('isEnabledSmall', ['$sce', function ($sce) {
+    return function (val) {
+        switch (val) {
+            case true:
+                return '<span class="iep-icon-checkbox-checked iep-icon-small" style="color:black"></span>';
+            case false:
+                return '<span class="iep-icon-checkbox-unchecked iep-icon-small" style="color:black"></span>';
+            default:
+                return '<span class="iep-icon-checkbox-unchecked iep-icon-small" style="color:black"></span>';
+        }
+    };
+}]);
+
 angular.module('peerExplorer').run(['$rootScope', 'PEER_CONSTANTS', function ($rootScope, PEER_CONSTANTS) {
     $rootScope.options = PEER_CONSTANTS;
 }]);

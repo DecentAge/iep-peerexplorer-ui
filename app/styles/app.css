@@ -519,6 +519,7 @@ p.box-heading {
     -webkit-text-fill-color: transparent; }
 
 .iep-icon-checkbox-checked {
+  opacity: 0.7;
   background-image: url(../images/339-checkbox-checked.png);
   width: 16px;
   height: 16px;
@@ -526,8 +527,50 @@ p.box-heading {
   display: inline-block; }
 
 .iep-icon-checkbox-unchecked {
+  opacity: 0.7;
   background-image: url(../images/340-checkbox-unchecked.png);
   width: 16px;
   height: 16px;
   background-size: 16px 16px;
   display: inline-block; }
+
+.iep-icon-small {
+  width: 12px;
+  height: 12px;
+  background-size: 12px 12px; }
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 3px;
+  border: 3px solid #666;
+  border-radius: 50% !important;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #666 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

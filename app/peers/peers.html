@@ -11,7 +11,7 @@
 		<div uib-accordion-group class="active-node-header panel-default" ng-init="status = {open: true}" is-open="status.open" style="background-color:transparent; border:none">
 
 			<uib-accordion-heading>
-				<p class="actv-node">Active Nodes</p>
+				<p class="actv-node">All Nodes</p>
 				<div class="pull-right">
 					<div class="btn-group">
 						<span class="reload-btn btn btn-infinity btn-md navbar-btn" style="display: inline-block;" type="label" ng-click="reloadPeers(); $event.stopImmediatePropagation(); $event.preventDefault();" popover-placement="top" popover-trigger="'mouseenter'" uib-popover="Reload">
@@ -25,6 +25,7 @@
 				<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstanceCallback" class="table table-striped table-bordered dt-responsive nowrap">
 					<thead>
 					<tr>
+						<th>Connected</th>
 						<th>Rank</th>
 						<th>IP</th>
 						<th>Peers</th>

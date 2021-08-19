@@ -317,6 +317,7 @@ table.dataTable, table.dataTable.no-footer{
 }
 
 .iep-icon-checkbox-checked {
+    opacity: 0.7;
     background-image: url(../images/339-checkbox-checked.png);
     width: 16px;
     height: 16px;
@@ -325,6 +326,7 @@ table.dataTable, table.dataTable.no-footer{
 }
 
 .iep-icon-checkbox-unchecked {
+    opacity: 0.7;
     background-image: url(../images/340-checkbox-unchecked.png);
     width: 16px;
     height: 16px;
@@ -332,4 +334,47 @@ table.dataTable, table.dataTable.no-footer{
     display: inline-block;
 }
 
+.iep-icon-small {
+    width: 12px;
+    height: 12px;
+    background-size: 12px 12px;
+}
+
 // peer icon css ends
+
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #ccc;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

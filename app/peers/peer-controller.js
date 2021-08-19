@@ -94,13 +94,18 @@ angular.module('peers').controller('PeersCtrl',
                 .withOption('rowReordering', true);
 
             $scope.dtColumns = [
+                DTColumnBuilder.newColumn('connected').withTitle('Connected').notSortable()
+                    .renderWith(function (data, type, row, meta) {
+                        return getConnectedUiModel(row.active);
+                    }),
+
                 DTColumnBuilder.newColumn('rank').withTitle('Rank').notSortable()
-                .renderWith(function (data, type, row, meta) {
-                    if (!row.peerState) {
-                        return "n/a";
-                    }
-                    return (row.peerState.rank).toFixed(2);
-                }),
+                    .renderWith(function (data, type, row, meta) {
+                        if (!row.peerState) {
+                            return "n/a";
+                        }
+                        return (row.peerState.rank).toFixed(2);
+                    }),
 
                 DTColumnBuilder.newColumn('_id').withTitle('IP').notSortable()
                   .renderWith(function (data, type, row, meta) {
@@ -218,6 +223,14 @@ angular.module('peers').controller('PeersCtrl',
                 } else {
                     return '<span tooltip-placement="top" uib-tooltip="' + toolTipText +
                         '" class="iep-icon-checkbox-unchecked " style="color:black"></span>';
+                }
+            }
+
+            function getConnectedUiModel(value) {
+                if (value) {
+                    return '<span tooltip-placement="right" uib-tooltip="Peer is connected" class="iep-icon-checkbox-checked " style="color:black"></span>';
+                } else {
+                    return '<span tooltip-placement="right" uib-tooltip="Peer is not connected, trying to reconnect or removing peer" style="color:black"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></span>';
                 }
             }
 
