@@ -1,4 +1,4 @@
-** Release 0.3.0 **
+# Release 0.3.1
 - added a start script to npm to simplify usage to package.json
 - resolve angular version manually
 - Add missing jshintrc and prevent auto browser opening in docker container
