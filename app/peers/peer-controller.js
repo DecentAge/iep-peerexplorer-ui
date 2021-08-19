@@ -96,7 +96,7 @@ angular.module('peers').controller('PeersCtrl',
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('connected').withTitle('Connected').notSortable()
                     .renderWith(function (data, type, row, meta) {
-                        return getConnectedUiModel(row.active);
+                        return getConnectedUiModel(row.active) + '<br/><small>Last connected:<br/>' + formatDate(row.lastConnected) + ' </small>';
                     }),
 
                 DTColumnBuilder.newColumn('rank').withTitle('Rank').notSortable()
@@ -174,6 +174,10 @@ angular.module('peers').controller('PeersCtrl',
 
                 DTColumnBuilder.newColumn('lastBlockchainFeeder').withTitle('Last Feeder').notSortable()
                 .renderWith(function (data, type, row, meta) {
+                    if (!row.peerState) {
+                        return "n/a";
+                    }
+
                   return '<a class="pointer" ng-controller="SearchCtrl" ng-click="searchIP(\'' +
                   row.peerState.lastBlockchainFeeder + '\' )">' + row.peerState.lastBlockchainFeeder + '</a>';
                 }),
@@ -232,6 +236,12 @@ angular.module('peers').controller('PeersCtrl',
                 } else {
                     return '<span tooltip-placement="right" uib-tooltip="Peer is not connected, trying to reconnect or removing peer" style="color:black"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></span>';
                 }
+            }
+
+            function formatDate(d) {
+                var date = new Date(d);
+
+                return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
             }
 
             $scope.dtInstanceCallback= function (_dtInstance) {
