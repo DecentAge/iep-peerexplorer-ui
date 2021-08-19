@@ -66,9 +66,9 @@
                 <div class="panel-heading"><strong>Gateway Services</strong></div>
                 <div class="panel-body">
 
-                    <span ng-bind-html='"IPFS"|gateways:node.state.gatewayIPFS'></span>
-                    <span ng-bind-html='"TenderMint"|gateways:node.state.gatewayTendermint'></span>
-                    <span ng-bind-html='"ZeroNet"|gateways:node.state.gatewayZeroNet'></span>
+                    <span ng-bind-html='"IPFS"|gateways:node.peerState.gatewayIPFS'></span>
+                    <span ng-bind-html='"TenderMint"|gateways:node.peerState.gatewayTendermint'></span>
+                    <span ng-bind-html='"ZeroNet"|gateways:node.peerState.gatewayZeroNet'></span>
 
                 </div>
             </div>
@@ -79,11 +79,11 @@
                 <div class="panel-heading"><strong>Proxy Services</strong></div>
                 <div class="panel-body">
 
-                    <span ng-bind-html='"BTC"|proxies:node.state.proxyBTC'></span>
-                    <span ng-bind-html='"ETH"|proxies:node.state.proxyETH'></span>
-                    <span ng-bind-html='"LTC"|proxies:node.state.proxyLTC'></span>
-                    <span ng-bind-html='"XRP"|proxies:node.state.proxyXRP'></span>
-                    <span ng-bind-html='"MKT"|proxies:node.state.proxyMarket'></span>
+                    <span ng-bind-html='"BTC"|proxies:node.peerState.proxyBTC'></span>
+                    <span ng-bind-html='"ETH"|proxies:node.peerState.proxyETH'></span>
+                    <span ng-bind-html='"LTC"|proxies:node.peerState.proxyLTC'></span>
+                    <span ng-bind-html='"XRP"|proxies:node.peerState.proxyXRP'></span>
+                    <span ng-bind-html='"MKT"|proxies:node.peerState.proxyMarket'></span>
 
                 </div>
             </div>
@@ -94,10 +94,10 @@
                 <div class="panel-heading"><strong>Storage Services</strong></div>
                 <div class="panel-body">
 
-                    <span ng-bind-html='"Mongodb"|storage:node.state.storageMongodb'></span>
-                    <span ng-bind-html='"RethinkDB"|storage:node.state.storageRethink'></span>
-                    <span ng-bind-html='"PostgreSQL"|storage:node.state.storagePSQL'></span>
-                    <span ng-bind-html='"MySQL"|storage:node.state.storageMySQL'></span>
+                    <span ng-bind-html='"Mongodb"|storage:node.peerState.storageMongodb'></span>
+                    <span ng-bind-html='"RethinkDB"|storage:node.peerState.storageRethink'></span>
+                    <span ng-bind-html='"PostgreSQL"|storage:node.peerState.storagePSQL'></span>
+                    <span ng-bind-html='"MySQL"|storage:node.peerState.storageMySQL'></span>
 
                 </div>
             </div>
@@ -126,32 +126,32 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-5"> API SSL</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.apiSSL | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.apiSSL | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> API CORS</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.apiServerCORS | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.apiServerCORS | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> API On</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.apiServerEnable | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.apiServerEnable | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Timeout</div>
-                        <div class="col-lg-7"> {{node.state.apiServerIdleTimeout}}</div>
+                        <div class="col-lg-7"> {{node.peerState.apiServerIdleTimeout}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> API Port</div>
-                        <div class="col-lg-7"> {{node.state.apiServerPort}}</div>
+                        <div class="col-lg-7"> {{node.peerState.apiServerPort}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> SSL Port</div>
-                        <div class="col-lg-7"> {{node.state.apiServerSSLPort}}</div>
+                        <div class="col-lg-7"> {{node.peerState.apiServerSSLPort}}</div>
                     </div>
 
                     <div class="row">
@@ -161,17 +161,17 @@
 
                     <div class="row">
                         <div class="col-lg-5"> Autofee</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.correctInvalidFees | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.correctInvalidFees | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Difficulty</div>
-                        <div class="col-lg-7"> {{node.state.cumulativeDifficulty}}</div>
+                        <div class="col-lg-7"> {{node.peerState.cumulativeDifficulty}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Min Rollback height</div>
-                        <div class="col-lg-7"> {{node.state.currentMinRollbackHeight}}</div>
+                        <div class="col-lg-7"> {{node.peerState.currentMinRollbackHeight}}</div>
                     </div>
 
                 </div>
@@ -185,59 +185,59 @@
 
                     <div class="row">
                         <div class="col-lg-5"> Hallmarked</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.enableHallmarkProtection | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.enableHallmarkProtection | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Download</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.isDownloading | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.isDownloading | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Scanning</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.isScanning | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.isScanning | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Ledgertrim</div>
-                        <div class="col-lg-7"> {{node.state.ledgerTrimKeep}}</div>
+                        <div class="col-lg-7"> {{node.peerState.ledgerTrimKeep}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Last Block</div>
-                        <div class="col-lg-7"> {{node.state.numberOfBlocks}}</div>
+                        <div class="col-lg-7"> {{node.peerState.numberOfBlocks}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Last Block ID</div>
                         <div class="col-lg-7">
-                            <small> {{node.state.lastBlock}}</small>
+                            <small> {{node.peerState.lastBlock}}</small>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Feeder IP</div>
-                        <div class="col-lg-7"> {{node.state.lastBlockchainFeeder}}</div>
+                        <div class="col-lg-7"> {{node.peerState.lastBlockchainFeeder}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Feeder Blk</div>
-                        <div class="col-lg-7"> {{node.state.lastBlockchainFeederHeight}}</div>
+                        <div class="col-lg-7"> {{node.peerState.lastBlockchainFeederHeight}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> PLTime</div>
-                        <div class="col-lg-7"> {{node.state.maxPrunableLifetime}}</div>
+                        <div class="col-lg-7"> {{node.peerState.maxPrunableLifetime}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Rollback</div>
-                        <div class="col-lg-7"> {{node.state.maxRollback}}</div>
+                        <div class="col-lg-7"> {{node.peerState.maxRollback}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> MaxUTx</div>
-                        <div class="col-lg-7"> {{node.state.maxUnconfirmedTransactions}}</div>
+                        <div class="col-lg-7"> {{node.peerState.maxUnconfirmedTransactions}}</div>
                     </div>
 
                 </div>
@@ -252,7 +252,7 @@
 
                     <div class="row">
                         <div class="col-lg-5"> MaxUpload</div>
-                        <div class="col-lg-7"> {{node.state.maxUploadFileSize}}</div>
+                        <div class="col-lg-7"> {{node.peerState.maxUploadFileSize}}</div>
                     </div>
 
                     <div class="row">
@@ -262,27 +262,27 @@
 
                     <div class="row">
                         <div class="col-lg-5"> Active Peers</div>
-                        <div class="col-lg-7"> {{node.state.numberOfActivePeers}}</div>
+                        <div class="col-lg-7"> {{node.peerState.numberOfActivePeers}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Total Peers</div>
-                        <div class="col-lg-7"> {{node.state.numberOfPeers}}</div>
+                        <div class="col-lg-7"> {{node.peerState.numberOfPeers}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Rank</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.rank | numericalString'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.rank | numericalString'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Websockets</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.useWebsocket | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.useWebsocket | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> SuperNode</div>
-                        <div class="col-lg-7"><span ng-bind-html='node.state.superNodeEnable | isEnabled'></span></div>
+                        <div class="col-lg-7"><span ng-bind-html='node.peerState.superNodeEnable | isEnabled'></span></div>
                     </div>
 
                     <div class="row">
@@ -306,54 +306,54 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-5"> Processors</div>
-                        <div class="col-lg-7"> {{node.state.availableProcessors}}</div>
+                        <div class="col-lg-7"> {{node.peerState.availableProcessors}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Threads</div>
-                        <div class="col-lg-7"> {{node.state.ThreadCount}}</div>
+                        <div class="col-lg-7"> {{node.peerState.ThreadCount}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Uptime</div>
-                        <div class="col-lg-7"> {{node.state.Uptime}}</div>
+                        <div class="col-lg-7"> {{node.peerState.Uptime}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> OS Arch</div>
-                        <div class="col-lg-7"> {{node.state.osArch}}</div>
+                        <div class="col-lg-7"> {{node.peerState.osArch}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> OS Name</div>
-                        <div class="col-lg-7"> {{node.state.osName}}</div>
+                        <div class="col-lg-7"> {{node.peerState.osName}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> OS Version</div>
                         <div class="col-lg-7">
-                            <small> {{node.state.osVersion}}</small>
+                            <small> {{node.peerState.osVersion}}</small>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Total Mem</div>
-                        <div class="col-lg-7"> {{node.state.totalMemory | bytesToMB}}</div>
+                        <div class="col-lg-7"> {{node.peerState.totalMemory | bytesToMB}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Max Mem</div>
-                        <div class="col-lg-7"> {{node.state.maxMemory | bytesToMB}}</div>
+                        <div class="col-lg-7"> {{node.peerState.maxMemory | bytesToMB}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> Free Mem</div>
-                        <div class="col-lg-7"> {{node.state.freeMemory | bytesToMB}}</div>
+                        <div class="col-lg-7"> {{node.peerState.freeMemory | bytesToMB}}</div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-5"> CPU Load</div>
-                        <div class="col-lg-7"> {{node.state.SystemLoadAverage * 100 + "%"}}</div>
+                        <div class="col-lg-7"> {{node.peerState.SystemLoadAverage * 100 + "%"}}</div>
                     </div>
 
                 </div>

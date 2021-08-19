@@ -96,15 +96,15 @@ angular.module('peers').controller('PeersCtrl',
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('rank').withTitle('Rank').notSortable()
                 .renderWith(function (data, type, row, meta) {
-                    if (!row.state) {
+                    if (!row.peerState) {
                         return "n/a";
                     }
-                    return (row.state.rank).toFixed(2);
+                    return (row.peerState.rank).toFixed(2);
                 }),
 
                 DTColumnBuilder.newColumn('_id').withTitle('IP').notSortable()
                   .renderWith(function (data, type, row, meta) {
-                      if (!row.state) {
+                      if (!row.peerState) {
                           return data;
                       }
 
@@ -114,22 +114,22 @@ angular.module('peers').controller('PeersCtrl',
 
                 DTColumnBuilder.newColumn('numberOfActivePeers').withTitle('Peers').notSortable()
                     .renderWith(function (data, type, row, meta) {
-                        if (!row.state) {
+                        if (!row.peerState) {
                             return "n/a";
                         }
 
-                        return row.state.numberOfPeers;
+                        return row.peerState.numberOfPeers;
                     }),
 
                 DTColumnBuilder.newColumn('SystemLoadAverage').withTitle('CPU').notSortable()
                     .renderWith(function (data, type, row, meta) {
 
-                        if (!row.state) {
+                        if (!row.peerState) {
                             return "n/a";
                         }
 
-                        var numCPU = parseInt(row.state.availableProcessors);
-                        var loadAvg = parseFloat(row.state.SystemLoadAverage);
+                        var numCPU = parseInt(row.peerState.availableProcessors);
+                        var loadAvg = parseFloat(row.peerState.SystemLoadAverage);
                         var loadPct   = (loadAvg * 100 /  (numCPU * 100) ) * 100;
 
                         return (loadPct.toFixed(2) + ' %');
@@ -139,13 +139,13 @@ angular.module('peers').controller('PeersCtrl',
                 DTColumnBuilder.newColumn('history_SystemLoadAverage').withTitle('CPU Load History').notSortable()
                     .renderWith(function (data, type, row, meta) {
 
-                        if (!row.state) {
+                        if (!row.peerState) {
                             return "n/a";
                         }
 
                         var tmpArr = [];
 
-                        var field = row.state.history_SystemLoadAverage;
+                        var field = row.peerState.history_SystemLoadAverage;
 
                         console.log(field)
 
@@ -170,16 +170,16 @@ angular.module('peers').controller('PeersCtrl',
                 DTColumnBuilder.newColumn('lastBlockchainFeeder').withTitle('Last Feeder').notSortable()
                 .renderWith(function (data, type, row, meta) {
                   return '<a class="pointer" ng-controller="SearchCtrl" ng-click="searchIP(\'' +
-                  row.state.lastBlockchainFeeder + '\' )">' + row.state.lastBlockchainFeeder + '</a>';
+                  row.peerState.lastBlockchainFeeder + '\' )">' + row.peerState.lastBlockchainFeeder + '</a>';
                 }),
 
                 DTColumnBuilder.newColumn('numberOfBlocks').withTitle('Height').notSortable()
                     .renderWith(function (data, type, row, meta) {
-                        if (!row.state) {
+                        if (!row.peerState) {
                             return "n/a";
                         }
 
-                        return row.state.numberOfBlocks;
+                        return row.peerState.numberOfBlocks;
                     }),
 
                 DTColumnBuilder.newColumn('version').withTitle('Version').notSortable()
