@@ -96,7 +96,7 @@ angular.module('peers').controller('PeersCtrl',
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('connected').withTitle('Connected').notSortable()
                     .renderWith(function (data, type, row, meta) {
-                        return getConnectedUiModel(row.active) + '<br/><span tooltip-placement="right" uib-tooltip="Last connection check" style="color:black"><small>' + formatDate(row.lastConnected) + '</small></span>';
+                        return getConnectedUiModel(row.active) + '<br/><span tooltip-placement="right" uib-tooltip="Last connected successfully" style="color:black"><small>' + formatDate(row.lastConnected) + '</small></span>';
                     }),
 
                 DTColumnBuilder.newColumn('rank').withTitle('Rank').notSortable()
