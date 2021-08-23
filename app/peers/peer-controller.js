@@ -76,7 +76,7 @@ angular.module('peers').controller('PeersCtrl',
                     var pageNum = (data.start / data.length) + 1;
                     var totalNumberOfNodes = 0;
                     PeerService.getStats().then(function (success) {
-                        totalNumberOfNodes = success.activeNodes;
+                        totalNumberOfNodes = success.totalNodes;
                         PeerService.getPeers(pageNum, data.length).then(function (response) {
                             var data = {'peers': response};
                             callback({
