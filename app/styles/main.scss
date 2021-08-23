@@ -153,6 +153,7 @@ table.dataTable, table.dataTable.no-footer{
 
 .panel-title {
     a:hover, a:focus {
+        outline: none;
         text-decoration: none;
     }
 }

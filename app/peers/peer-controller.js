@@ -96,7 +96,7 @@ angular.module('peers').controller('PeersCtrl',
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('connected').withTitle('Connected').notSortable()
                     .renderWith(function (data, type, row, meta) {
-                        return getConnectedUiModel(row.active) + '<br/><small>Last connected:<br/>' + formatDate(row.lastConnected) + ' </small>';
+                        return getConnectedUiModel(row.active) + '<br/><span tooltip-placement="right" uib-tooltip="Last connection check" style="color:black"><small>' + formatDate(row.lastConnected) + '</small></span>';
                     }),
 
                 DTColumnBuilder.newColumn('rank').withTitle('Rank').notSortable()
@@ -117,13 +117,13 @@ angular.module('peers').controller('PeersCtrl',
                     row._id + '\' )"></strong>' + data + '</strong></a>';
                   }),
 
-                DTColumnBuilder.newColumn('numberOfActivePeers').withTitle('Peers').notSortable()
+                DTColumnBuilder.newColumn('numberOfActivePeers').withTitle('Active Peers').notSortable()
                     .renderWith(function (data, type, row, meta) {
                         if (!row.peerState) {
                             return "n/a";
                         }
 
-                        return row.peerState.numberOfPeers;
+                        return '<span tooltip-placement="right" uib-tooltip="Total peers: ' + row.peerState.numberOfPeers + '" style="color:black">' + row.peerState.numberOfActivePeers + '</span>';
                     }),
 
                 DTColumnBuilder.newColumn('SystemLoadAverage').withTitle('CPU').notSortable()
@@ -205,7 +205,7 @@ angular.module('peers').controller('PeersCtrl',
                 DTColumnBuilder.newColumn('apiServerEnable').withTitle('API').notSortable()
                     .renderWith(function (data, type, row, meta) {
 
-                        return getTickMarkUiModel(row.services.includes("API"), 'API Enabled');
+                        return getTickMarkUiModel(row.services.includes("API"), 'API Enabled on Port ' + row.apiPort);
                     }),
 
                 DTColumnBuilder.newColumn('geoip').withTitle('Country').notSortable()

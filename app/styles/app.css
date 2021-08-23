@@ -333,6 +333,7 @@ table.dataTable, table.dataTable.no-footer {
   padding: 0; }
 
 .panel-title a:hover, .panel-title a:focus {
+  outline: none;
   text-decoration: none; }
 
 .uib-accordion-header {
