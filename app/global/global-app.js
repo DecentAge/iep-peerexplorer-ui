@@ -29,6 +29,8 @@ angular.module('peerExplorer')
         });
 
         $urlRouterProvider.otherwise('/peers');
+
+        document.title = "Infinity Peer Explorer | " + window.getEnvConfig("NETWORK_ENVIRONMENT");
     }]);
 
 angular.module('peerExplorer').filter('isEnabled', ['$sce', function ($sce) {
