@@ -239,6 +239,10 @@ angular.module('peers').controller('PeersCtrl',
             }
 
             function formatDate(d) {
+                if (!d || typeof d === "undefined") {
+                    return "n/a";
+                }
+
                 var date = new Date(d);
 
                 return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
