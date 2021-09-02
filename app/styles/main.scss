@@ -335,6 +335,37 @@ table.dataTable, table.dataTable.no-footer{
     display: inline-block;
 }
 
+.iep-icon-download {
+    position: relative;
+    float: left;
+    background-image: url(../images/download.png);
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    display: inline-block;
+    opacity: 0.7;
+}
+.iep-icon-scan {
+    position: relative;
+    float: left;
+    background-image: url(../images/scan.png);
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    display: inline-block;
+    opacity: 0.7;
+}
+.iep-icon-running {
+    position: relative;
+    float: left;
+    background-image: url(../images/running.png);
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    display: inline-block;
+    opacity: 0.7;
+}
+
 .iep-icon-small {
     width: 12px;
     height: 12px;

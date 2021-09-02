@@ -99,6 +99,22 @@ angular.module('peers').controller('PeersCtrl',
                         return getConnectedUiModel(row.active) + '<br/><span tooltip-placement="right" uib-tooltip="Last connected successfully" style="color:black"><small>' + formatDate(row.lastConnected) + '</small></span>';
                     }),
 
+                DTColumnBuilder.newColumn('state').withTitle('State').notSortable()
+                    .renderWith(function (data, type, row, meta) {
+                            if (!row.peerState) {
+                                return "n/a";
+                            }
+
+                            if (row.peerState.isDownloading) {
+                                return iconToolTip('<div class="iep-icon-download"></div>', "Node is syncing (not ready)");
+                            } else if (row.peerState.isScanning) {
+                                return iconToolTip('<div class="iep-icon-scan"></div>', "Node is searching nodes (not ready)");
+                            } else {
+                                return iconToolTip('<div class="iep-icon-running"></div>', "Node is in sync (ready)");
+                            }
+                        }
+                    ),
+
                 DTColumnBuilder.newColumn('rank').withTitle('Rank').notSortable()
                     .renderWith(function (data, type, row, meta) {
                         if (!row.peerState) {
@@ -246,6 +262,11 @@ angular.module('peers').controller('PeersCtrl',
                 var date = new Date(d);
 
                 return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+            }
+
+            function iconToolTip(icon, toolTipText) {
+                return'<span tooltip-placement="top" uib-tooltip="' + toolTipText +
+                    '">'+icon+'</span>';
             }
 
             $scope.dtInstanceCallback= function (_dtInstance) {
