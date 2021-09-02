@@ -51,7 +51,7 @@ npm run start
 ## Contributing
 
 ## License
-Copyright � 2016-2017 Infinity Community.
+Copyright &copy; 2016-2017 Infinity Community.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License version 2,
@@ -69,7 +69,7 @@ along with this program in the file COPYING.txt. If not, see
 This software also incorporates work under the MIT license.
 
 
-Copyright � 2013-2015 The Nxt Core Developers.
+Copyright &copy; 2013-2015 The Nxt Core Developers.
 
 
 This program is free software; you can redistribute it and/or
@@ -104,7 +104,7 @@ requirements of that license, the following permission notice, applicable to
 those parts of the code only, is included below:
 
 
-   Copyright � 2013-2015 The Nxt Core Developers.
+   Copyright &copy; 2013-2015 The Nxt Core Developers.
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
