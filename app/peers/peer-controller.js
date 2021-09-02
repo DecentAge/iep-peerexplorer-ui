@@ -96,7 +96,7 @@ angular.module('peers').controller('PeersCtrl',
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('connected').withTitle('Connected').notSortable()
                     .renderWith(function (data, type, row, meta) {
-                        return getConnectedUiModel(row.active) + '<br/><span tooltip-placement="right" uib-tooltip="Last connected successfully" style="color:black"><small>' + formatDate(row.lastConnected) + '</small></span>';
+                        return getConnectedUiModel(row.active) + '<br/><span tooltip-placement="right" uib-tooltip="Last connected successfully" style="color:black"><small>' + formatDate(row.lastConnected, true) + '</small></span>';
                     }),
 
                 DTColumnBuilder.newColumn('state').withTitle('State').notSortable()
@@ -254,14 +254,19 @@ angular.module('peers').controller('PeersCtrl',
                 }
             }
 
-            function formatDate(d) {
+            function formatDate(d, withTime) {
                 if (!d || typeof d === "undefined") {
                     return "n/a";
                 }
+                if (typeof withTime === "undefined") {
+                    withTime = false;
+                }
+
+                var browserLocale = navigator.language || navigator.userLanguage || "en-US";
 
                 var date = new Date(d);
 
-                return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+                return date.toLocaleDateString(browserLocale) + (withTime ? " " + date.toLocaleTimeString(browserLocale) : "");
             }
 
             function iconToolTip(icon, toolTipText) {
