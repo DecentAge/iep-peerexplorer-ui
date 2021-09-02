@@ -12,6 +12,7 @@
 - darkened color of text to make it easier to read
 - disable toggling of list to avoid confusion if clicked accidentally
 - added sync state column to list
+- formatted dates with locale detection
 
 # Release 0.3.1
 - added a start script to npm to simplify usage to package.json
