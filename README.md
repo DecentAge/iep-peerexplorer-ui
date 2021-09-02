@@ -15,6 +15,10 @@ This application is used to monitor all peers in the network and is displaying t
 - Display details for all peers that are accessible via node API
 
 ## Getting Started
+### Configuration
+
+You can configure several values for the app. The config file is located in `/app/env.config.js`.
+
 ### Prerequisites
 
 You need to have following tools installed:
