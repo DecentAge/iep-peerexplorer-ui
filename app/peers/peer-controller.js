@@ -68,6 +68,7 @@ angular.module('peers').controller('PeersCtrl',
                 .withDataProp('peers')
                 .withOption('processing', true)
                 .withOption('bFilter', false)
+                .withOption('stateSave', true)
                 .withOption('fnRowCallback',
                     function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                         $compile(nRow)($scope);
