@@ -6,12 +6,12 @@ set -o nounset
 RELEASE_VERSION=$(cat release-version.txt)
 docker build -t decentage/iep-peerexplorer-ui:${RELEASE_VERSION} .
 
+docker rm --force iep-peerexplorer-ui-extract 2>/dev/null
+
 CONTAINER_ID=$(docker create --rm --name iep-peerexplorer-ui-extract decentage/iep-peerexplorer-ui:${RELEASE_VERSION})
 mkdir -p ./build
-docker cp ${CONTAINER_ID}:/build/iep-peerexplorer-ui.zip ./build
-docker rm ${CONTAINER_ID}
 
-#docker container rm -f iep-peerexplorer-ui-extract
-#docker container create --name iep-peerexplorer-ui-extract decentage/iep-peerexplorer-ui:${RELEASE_VERSION}  
-#docker container cp iep-peerexplorer-ui-extract:/build .  
-#docker container rm -f iep-peerexplorer-ui-extract
+# Copy the compiled package from the container to the host
+docker cp ${CONTAINER_ID}:/build/iep-peerexplorer-ui.zip ./build
+
+docker rm iep-peerexplorer-ui-extract
