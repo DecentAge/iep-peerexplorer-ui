@@ -12,7 +12,6 @@ COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "30-
 RUN npm install
 
 COPY ["bower.json", "./"]
-RUN ls -alt /app
 RUN npm run bower install
 COPY /app /app/app
 
