@@ -12,7 +12,6 @@ COPY ["package*.json", "gulpfile.js", ".jshintrc", "default.conf.template", "30-
 RUN npm install
 
 COPY ["bower.json", "./"]
-RUN ls -alt /app
 RUN npm run bower install
 COPY /app /app/app
 
@@ -23,7 +22,7 @@ RUN zip -r /app/build/iep-peerexplorer-ui.zip ./dist
 #RUN package_file=$(npm pack) && mkdir /build && cp $package_file /build
 
 # production environment
-FROM nginx:1.18-alpine
+FROM nginx:1.20-alpine
 ENV NGINX_PATH=/
 ENV NGINX_PORT=80
 COPY --from=builder /app/build /build
@@ -31,7 +30,7 @@ COPY --from=builder /app/dist /usr/share/nginx/html/
 COPY --from=builder /app/default.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=builder /app/app/env.config.js.template /etc/nginx/templates/env.config.js.template
 COPY --from=builder /app/30-nginx-iep-startup-script.sh /docker-entrypoint.d/30-nginx-iep-startup-script.sh
-RUN chmod ugo+x /docker-entrypoint.d/30-nginx-iep-startup-script.sh
+RUN chmod 775 /docker-entrypoint.d/30-nginx-iep-startup-script.sh
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
