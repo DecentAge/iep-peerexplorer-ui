@@ -18,7 +18,7 @@ angular.module('peerExplorer').controller('FooterController', ['PeerService', '$
     function (PeerService, $scope, $rootScope,peerConfig) {
 
         $scope.init = function () {
-            PeerService.getPeers(1,10).then(function (success) {
+            PeerService.getPeers(1,2).then(function (success) {
 
                 $scope.topNode=success[0]||{};
             });
