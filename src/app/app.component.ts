@@ -10,7 +10,7 @@ import { PeerService } from './services/peer.service';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = 'iep-peerexplorer';
+  title = 'iep-peerexplorer-ui';
   isCollapsed = true;
   showSearchBar = false;
   searchTerm = '';
