@@ -41,7 +41,7 @@ export class PeersComponent implements OnInit {
           connected: peer.state === 1,
           lastConnected: peer.lastConnected ? new Date(peer.lastConnected) : new Date(),
           rank: peer.peerState?.rank || 0,
-          cpuUsage: peer.peerState?.SystemLoadAverage && peer.peerState?.availableProcessors ? Math.round(peer.peerState.SystemLoadAverage * 100 / peer.peerState.availableProcessors) : 0,
+          cpuUsage: this.getLatestCpuUsage(peer),
           lastFeeder: peer.peerState?.lastBlockchainFeeder || 'N/A',
           blocks: peer.peerState?.numberOfBlocks || 0,
           marked: peer.blacklisted || false,
@@ -81,6 +81,19 @@ export class PeersComponent implements OnInit {
     // In a real app, this would open a modal or navigate to a details page
     console.log('Viewing details for peer:', peer);
     alert(`Peer Details:\nIP: ${peer.announcedAddress || peer.address}\nVersion: ${peer.applicationVersion || 'Unknown'}`);
+  }
+
+  // Get the latest CPU usage from history array
+  getLatestCpuUsage(peer: Peer): number {
+    const history = peer.peerState?.history_SystemLoadAverage;
+    const processors = peer.peerState?.availableProcessors;
+
+    if (history && history.length > 0 && processors) {
+      const latestLoad = history[history.length - 1];
+      return Math.round(latestLoad * 100 / processors);
+    }
+
+    return 0;
   }
 
   // Format CPU usage with % symbol
