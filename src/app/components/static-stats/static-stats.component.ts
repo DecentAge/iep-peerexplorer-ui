@@ -54,10 +54,6 @@ export class StaticStatsComponent implements OnInit {
         this.syncingCount = (stats.downloading || 0) + (stats.scanning || 0); // Syncing nodes
         this.commonVersion = stats.version || 'Unknown'; // Most common version
 
-        // For top node, we'd need additional logic to determine from peers list
-        // For now, show active nodes count or N/A
-        this.topNode = stats.activeNodes ? `${stats.activeNodes} active` : 'N/A';
-
         // Update original properties for compatibility
         this.connectedPeers = stats.activeNodes || 0;
         this.knownPeers = stats.totalNodes || 0;
@@ -70,6 +66,23 @@ export class StaticStatsComponent implements OnInit {
       error: (error: any) => {
         console.error('Error loading statistics:', error);
         this.isConnected = false;
+      }
+    });
+
+    // Get the top node (node with most peers)
+    this.peerService.getPeers(1, 1).subscribe({
+      next: (peers: any[]) => {
+        if (peers && peers.length > 0) {
+          const topPeer = peers[0];
+          const peerCount = topPeer.peerState?.numberOfActivePeers || 0;
+          this.topNode = `${topPeer.announcedAddress || topPeer.address} (${peerCount} peers)`;
+        } else {
+          this.topNode = 'N/A';
+        }
+      },
+      error: (error: any) => {
+        console.error('Error loading top node:', error);
+        this.topNode = 'N/A';
       }
     });
   }

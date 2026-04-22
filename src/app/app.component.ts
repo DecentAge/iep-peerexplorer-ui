@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
+import { PeerService } from './services/peer.service';
 
 @Component({
   selector: 'app-root',
@@ -15,19 +16,43 @@ export class AppComponent implements OnInit {
   searchTerm = '';
   networkEnvironment = 'mainnet'; // or 'testnet'
   topNode = 'Loading...';
-  connectedURL = 'Loading...';
-  version = '1.0.0';
+  connectedURL = environment.apiUrl;
+  version = 'Loading...';
   blockexplorerUrl = environment.blockexplorerUrl;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private peerService: PeerService) {}
 
   ngOnInit() {
-    // In a real app, these values would be fetched from a service
-    setTimeout(() => {
-      this.topNode = '123.456.789.0';
-      this.connectedURL = 'https://api.infinity-economics.org';
-      this.version = '1.0.0';
-    }, 1000);
+    this.loadFooterData();
+    // Refresh footer data every minute
+    setInterval(() => this.loadFooterData(), 60000);
+  }
+
+  loadFooterData() {
+    // Get stats for version
+    this.peerService.getStats().subscribe({
+      next: (stats: any) => {
+        this.version = stats.version || 'Unknown';
+      },
+      error: (error) => console.error('Error loading stats:', error)
+    });
+
+    // Get top node (node with most peers)
+    this.peerService.getPeers(1, 1).subscribe({
+      next: (peers: any[]) => {
+        if (peers && peers.length > 0) {
+          const topPeer = peers[0];
+          const peerCount = topPeer.peerState?.numberOfActivePeers || 0;
+          this.topNode = `${topPeer.announcedAddress || topPeer.address} (${peerCount} peers)`;
+        } else {
+          this.topNode = 'N/A';
+        }
+      },
+      error: (error) => {
+        console.error('Error loading top node:', error);
+        this.topNode = 'N/A';
+      }
+    });
   }
 
   search() {
