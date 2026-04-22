@@ -1,0 +1,16 @@
+// File for importing all global styles in one place
+// This can be imported into component styles if needed
+// Import all base styles here
+@import 'variables';
+@import 'mixins';
+
+// Global styles can be added below this line
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'components';
+@import 'layout';
+@import 'footer';
+@import 'vendor-overrides';
+@import 'theme';
+@import 'app-specific';

@@ -1,0 +1,222 @@
+// ===== APP SPECIFIC STYLES =====
+// These styles are extracted from app.scss and app.css
+
+// Custom styling for app-specific components
+
+// Peer-related components
+.peer-blocks p {
+  font-size: 15px;
+}
+
+// Active node styling
+.actv-node {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.012cm;
+  display: inline-block;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.top-node {
+  margin: 0 0 0px;
+}
+
+// Stats components
+.stats-card {
+  margin-bottom: 2rem;
+
+  .stat-item {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: $secondary-color;
+  }
+}
+
+// Peer explorer specific
+.peer-explorer {
+  padding: 5px;
+
+  .panel {
+    border-bottom: 3px solid $pink;
+    border-radius: $border-radius !important;
+    padding: 15px 0;
+
+    .panel-heading {
+      border: 0;
+    }
+  }
+}
+
+// Active node header styling
+.active-node-header {
+  .panel-heading {
+    margin-bottom: 12px;
+    padding: 16px 32px;
+  }
+
+  .panel-body table {
+    border-top: none;
+  }
+
+  .panel-body table thead tr th {
+    font-size: 12px;
+    font-weight: 800;
+    border-color: #ececed !important;
+  }
+
+  .panel-body table tbody tr td,
+  .panel-body table thead tr th {
+    padding: 16px;
+    border-color: #eff5f8;
+    text-transform: uppercase;
+  }
+
+  .panel-collapse {
+    padding: 32px;
+    background-color: $white;
+    border-radius: $border-radius !important;
+  }
+
+  .panel-body table tbody tr td,
+  .panel-body table tbody tr td a.pointer {
+    font-size: 12px;
+    background-color: $white;
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    color: #666;
+  }
+
+  .panel-body table tbody tr td span {
+    color: #666 !important;
+    display: inline-block;
+  }
+
+  .panel-body table tbody tr td a {
+    color: $pink;
+    background-color: transparent;
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .reload-btn {
+    font-weight: $font-weight-bold;
+    z-index: 1;
+    font-size: 14px;
+    color: $pink;
+    line-height: 16px;
+    padding: 10px 15px;
+    border-radius: 50px !important;
+    min-width: 130px;
+    @include brand-gradient;
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      background: $white;
+      top: 1px;
+      left: 1px;
+      z-index: -1;
+      border-radius: 50px;
+      padding: 5px 10px;
+    }
+
+    &:hover {
+      color: $white;
+    }
+
+    &:hover:after {
+      @include brand-gradient;
+    }
+  }
+}
+
+// Box headings
+p.box-heading {
+  font-size: 12px;
+}
+
+.box-heading, .top-node a {
+  color: #333 !important;
+  font-family: $font-family-base;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.015cm;
+  padding-bottom: 5px;
+}
+
+// Peer icon styling
+.peer-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 18px;
+
+  &:before {
+    background: linear-gradient(to right, #ea464b, #f18521);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Node panel styling
+.panel.node-panel {
+  border-bottom: 3px solid $pink;
+  border-radius: $border-radius !important;
+  padding: 15px;
+
+  .panel-heading {
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+}
+
+// Accordion styling
+.uib-accordion-header {
+  font-weight: 500;
+  font-size: 24px;
+  color: #333333;
+}
+
+// Block details table
+#block-details-table {
+  /*table-layout: fixed;*/
+  /*word-wrap: break-word;*/
+}
+
+// Icon styling
+.iep-icon-checkbox-checked {
+  opacity: 0.7;
+  background-image: url(../images/339-checkbox-checked.png);
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  display: inline-block;
+}
+
+.iep-icon-checkbox-unchecked {
+  opacity: 0.7;
+  background-image: url(../images/340-checkbox-unchecked.png);
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  display: inline-block;
+}

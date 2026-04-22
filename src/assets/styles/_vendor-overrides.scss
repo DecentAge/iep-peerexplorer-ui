@@ -1,0 +1,46 @@
+// ===== VENDOR OVERRIDES =====
+// Customizations to third-party libraries
+
+// Bootstrap overrides
+.btn {
+  border-radius: $border-radius !important;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+// Fix Bootstrap modal z-index issues
+.modal {
+  z-index: $z-index-navbar + 100;
+}
+
+.modal-backdrop {
+  z-index: $z-index-navbar + 50;
+}
+
+// ng-bootstrap customizations
+.dropdown-menu {
+  border-radius: 0;
+  box-shadow: $box-shadow;
+}
+
+// DataTables customizations
+.dataTables_paginate.paging_numbers {
+  &:before, &:after {
+    // Pagination customization
+  }
+}
+
+// Bootstrap pagination overrides
+.pagination .page-link {
+  border-radius: 50% !important;
+  margin: 0 5px;
+  min-width: 34px;
+  text-align: center;
+}
+
+.pagination .page-item.active .page-link {
+  @include brand-gradient;
+  border: none;
+}

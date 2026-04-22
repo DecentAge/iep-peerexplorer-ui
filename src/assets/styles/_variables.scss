@@ -1,0 +1,108 @@
+// This file should be replaced with the original _variables.scss from /home/git/iep-peerexplorer-ui/app/styles/
+// Brand colors
+$pink: #e72d45;
+$orange: #f3931b;
+$white: #fff;
+$black: #000;
+$grey: #f6f7f8;
+$grey2: #ddd;
+
+// Gradient variables
+$brand-gradient: linear-gradient(to right, $pink 0%, $orange 100%);
+// Placeholder variables
+$primary-color: #0d6efd;
+$secondary-color: #6c757d;
+$success-color: #198754;
+$warning-color: #ffc107;
+$danger-color: #dc3545;
+$light-color: #f8f9fa;
+$dark-color: #212529;
+// ===== COLOR VARIABLES =====
+
+// Brand colors
+$pink: #e72d45;
+$orange: #f3931b;
+$white: #fff;
+$black: #000;
+$grey: #f6f7f8;
+$grey2: #ddd;
+$dark-grey: #474747;
+$light-grey: #f1f2f3;
+$infinity-orange: #F69221;
+$dark-grey2: #535353;
+$table-border: #eff5f8;
+
+// Functional colors
+$primary-color: $pink;
+$secondary-color: $orange;
+$success-color: #198754;
+$warning-color: #ffc107;
+$danger-color: #dc3545;
+$light-color: #f8f9fa;
+$dark-color: #212529;
+
+// Background colors
+$body-bg: #F4F4F4;
+$panel-bg: $white;
+$header-bg: $primary-color;
+
+// Text colors
+$text-color: $dark-grey;
+$text-color-light: $white;
+$link-color: $primary-color;
+
+// Border colors
+$border-color: $grey2;
+
+// ===== GRADIENT VARIABLES =====
+$brand-gradient: linear-gradient(to right, $pink 0%, $orange 100%);
+
+// ===== LAYOUT VARIABLES =====
+$header-height: 80px;
+$footer-height: 50px;
+$border-radius: 6px;
+$box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+// Brand Colors
+$infinity-orange: #e72d45;
+$pink: #e72d45;
+$orange: #ff7800;
+
+// Basic Colors
+$white: #ffffff;
+$black: #000000;
+$dark-grey: #333333;
+$dark-grey2: #666666;
+$grey: #999999;
+$grey2: #aaaaaa;
+$light-grey: #f5f5f5;
+
+// Other Variables
+$border-radius: 6px;
+$table-border: #efefef;
+
+// Breakpoints
+$breakpoint-xs: 576px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
+// ===== TYPOGRAPHY VARIABLES =====
+$font-family-base: 'Montserrat', sans-serif;
+$font-family-headings: 'Montserrat', sans-serif;
+$font-size-base: 14px;
+$font-size-sm: 12px;
+$font-size-lg: 16px;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-weight-heavy: 700;
+
+// ===== BREAKPOINT VARIABLES =====
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// ===== Z-INDEX VARIABLES =====
+$z-index-tooltip: 2000;
+$z-index-navbar: 1000;
+$border-radius: 0.5rem;
+$box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
