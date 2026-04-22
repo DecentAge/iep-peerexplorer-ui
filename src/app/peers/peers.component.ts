@@ -35,17 +35,19 @@ export class PeersComponent implements OnInit {
     this.isReloading = true;
     this.peerService.getPeers(this.currentPage, this.itemsPerPage).subscribe({
       next: (data) => {
-        // Enhance the peer data with additional properties to match the original design
+        // Map the peer data from API response
         this.peers = data.map(peer => ({
           ...peer,
           connected: peer.state === 1,
-          lastConnected: new Date(),
-          rank: Math.floor(Math.random() * 100), // Dummy data
-          cpuUsage: Math.floor(Math.random() * 100), // Dummy data (number without %)
-          lastFeeder: 'N/A',
-          blocks: Math.floor(Math.random() * 1000000), // Dummy data
-          marked: Math.random() > 0.8, // Dummy data
-          apiEnabled: Math.random() > 0.5 // Dummy data
+          lastConnected: peer.lastConnected ? new Date(peer.lastConnected) : new Date(),
+          rank: peer.peerState?.rank || 0,
+          cpuUsage: peer.peerState?.SystemLoadAverage ? Math.round(peer.peerState.SystemLoadAverage * 100 / peer.peerState.availableProcessors) : 0,
+          lastFeeder: peer.peerState?.lastBlockchainFeeder || 'N/A',
+          blocks: peer.peerState?.numberOfBlocks || 0,
+          marked: peer.blacklisted || false,
+          apiEnabled: peer.peerState?.apiServerEnable || false,
+          numberOfActivePeers: peer.peerState?.numberOfActivePeers || 0,
+          applicationVersion: peer.version || 'Unknown'
         }));
         this.loading = false;
         this.isReloading = false;

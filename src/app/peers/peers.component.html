@@ -62,12 +62,12 @@
               </td>
               <td>
                 <div class="cpu-history-chart">
-                  <!-- Simple CPU history visualization -->
+                  <!-- CPU history visualization from API data -->
                   <div class="d-flex align-items-center justify-content-center" style="height: 20px">
-                    <div *ngFor="let n of [0,1,2,3,4]"
+                    <div *ngFor="let cpuVal of (peer.peerState?.history_SystemLoadAverage || []).slice(-10)"
                          class="mx-1"
-                         style="width: 4px; height: 16px; background-color: #e72d45; opacity: 0.7;"
-                         [style.height.px]="4 + (getCpuValue(peer)/25 * 12) * Math.random()">
+                         style="width: 4px; background-color: #e72d45; opacity: 0.7;"
+                         [style.height.px]="4 + (cpuVal / (peer.peerState?.availableProcessors || 1) * 100 / 6.25)">
                     </div>
                   </div>
                 </div>
