@@ -44,7 +44,7 @@ export class PeersComponent implements OnInit {
           cpuUsage: this.getLatestCpuUsage(peer),
           lastFeeder: peer.peerState?.lastBlockchainFeeder || 'N/A',
           blocks: peer.peerState?.numberOfBlocks || 0,
-          marked: peer.blacklisted || false,
+          marked: peer.services?.includes('HALLMARK') || false,
           apiEnabled: peer.peerState?.apiServerEnable || false,
           numberOfActivePeers: peer.peerState?.numberOfActivePeers || 0,
           applicationVersion: peer.version || 'Unknown'
