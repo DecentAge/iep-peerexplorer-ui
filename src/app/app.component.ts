@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   topNode = 'Loading...';
   connectedURL = 'Loading...';
   version = '1.0.0';
+  blockexplorerUrl = environment.blockexplorerUrl;
 
   constructor(private router: Router) {}
 
