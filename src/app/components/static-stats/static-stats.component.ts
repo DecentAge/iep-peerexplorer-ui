@@ -46,21 +46,24 @@ export class StaticStatsComponent implements OnInit {
 
   loadStats(): void {
     this.peerService.getStats().subscribe({
-      next: (stats: PeerStats) => {
-        // Update original properties
-        this.connectedPeers = stats.connectedPeers || 0;
-        this.knownPeers = stats.totalPeers || 0;
-        this.activePeers = Math.floor(this.connectedPeers * 0.7); // Example calculation
+      next: (stats: any) => {
+        // Map API response to display properties
+        this.totalNodes = stats.totalNodes || 0;
+        this.apiCount = stats.apiEnabled || 0; // Open API
+        this.sslApiCount = stats.apiSSL || 0; // SSL API
+        this.syncingCount = (stats.downloading || 0) + (stats.scanning || 0); // Syncing nodes
+        this.commonVersion = stats.version || 'Unknown'; // Most common version
 
-        // Update new properties
-        this.totalNodes = stats.totalPeers || 0;
-        this.apiCount = Math.floor(this.totalNodes * 0.4); // 40% of nodes have API enabled
-        this.syncingCount = Math.floor(this.totalNodes * 0.15); // 15% of nodes are syncing
-        this.sslApiCount = Math.floor(this.apiCount * 0.6); // 60% of API nodes use SSL
-        this.commonVersion = '1.2.4'; // Most common version
-        this.topNode = this.generateRandomIP(); // Random IP for demo purposes
+        // For top node, we'd need additional logic to determine from peers list
+        // For now, show active nodes count or N/A
+        this.topNode = stats.activeNodes ? `${stats.activeNodes} active` : 'N/A';
 
-        this.lastUpdate = new Date(stats.lastUpdate || new Date());
+        // Update original properties for compatibility
+        this.connectedPeers = stats.activeNodes || 0;
+        this.knownPeers = stats.totalNodes || 0;
+        this.activePeers = stats.activeNodes || 0;
+
+        this.lastUpdate = new Date();
         this.updateFormattedDate();
         this.isConnected = true;
       },
