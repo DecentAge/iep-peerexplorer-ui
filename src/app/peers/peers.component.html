@@ -52,7 +52,7 @@
                 <span *ngIf="peer.state === -1" class="badge text-bg-danger">OFFLINE</span>
                 <span *ngIf="peer.blacklisted" class="badge text-bg-danger ms-1">BLACKLISTED</span>
               </td>
-              <td>{{ peer.rank || 'N/A' }}</td>
+              <td>{{ peer.rank ? (peer.rank | number:'1.2-2') : 'N/A' }}</td>
               <td class="text-nowrap">{{ peer.announcedAddress || peer.address }}</td>
               <td>{{ peer.numberOfActivePeers || 0 }}</td>
               <td>

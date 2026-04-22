@@ -37,13 +37,13 @@ export class AppComponent implements OnInit {
       error: (error) => console.error('Error loading stats:', error)
     });
 
-    // Get top node (node with most peers)
-    this.peerService.getPeers(1, 1).subscribe({
+    // Get top node (node with highest rank)
+    this.peerService.getTopNodeByRank().subscribe({
       next: (peers: any[]) => {
         if (peers && peers.length > 0) {
           const topPeer = peers[0];
-          const peerCount = topPeer.peerState?.numberOfActivePeers || 0;
-          this.topNode = `${topPeer.announcedAddress || topPeer.address} (${peerCount} peers)`;
+          const rank = topPeer.peerState?.rank || 0;
+          this.topNode = `${topPeer.announcedAddress || topPeer.address} (${rank.toFixed(2)})`;
         } else {
           this.topNode = 'N/A';
         }

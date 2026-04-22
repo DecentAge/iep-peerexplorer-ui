@@ -17,15 +17,19 @@ export class PeerService {
     this.peerEndPoint = 'api/nodes';
   }
 
-  getPeers(page: number, results: number): Observable<Peer[]> {
+  getPeers(page: number, results: number, filter: string = 'numberOfActivePeers'): Observable<Peer[]> {
     const params = {
       page: page.toString(),
       results: results.toString(),
-      filter: 'numberOfActivePeers',
+      filter: filter,
       order: 'desc'
     };
 
     return this.http.get<Peer[]>(`${this.apiUrl}${this.peerEndPoint}`, { params });
+  }
+
+  getTopNodeByRank(): Observable<Peer[]> {
+    return this.getPeers(1, 1, 'rank');
   }
 
   getStats(): Observable<any> {
