@@ -7,6 +7,8 @@ COPY package*.json ./
 
 # Install dependencies and zip utility
 RUN apk add --no-cache zip && npm i
+RUN npm install -g @angular/cli
+
 
 # Copy the rest of the application code
 COPY . .
@@ -16,15 +18,15 @@ RUN npm run build
 
 # Create build directory and zip the build output
 RUN mkdir -p /build \
-    && cd /app/dist/iep-peerexplorer \
-    && zip -r /build/iep-peerexplorer.zip .
+    && cd /app/dist/iep-peerexplorer-ui \
+    && zip -r /build/iep-peerexplorer-ui.zip .
 
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine AS deploy
 
 # Copy the build output to replace the default nginx contents
-COPY --from=build /app/dist/iep-peerexplorer /usr/share/nginx/html
-COPY --from=build /build/iep-peerexplorer.zip /build/iep-peerexplorer.zip
+COPY --from=build /app/dist/iep-peerexplorer-ui /usr/share/nginx/html
+COPY --from=build /build/iep-peerexplorer-ui.zip /build/iep-peerexplorer.zip
 # Copy custom nginx config if needed
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
