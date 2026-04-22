@@ -76,8 +76,8 @@
               <td>{{ peer.blocks || 'N/A' }}</td>
               <td>{{ peer.applicationVersion || 'Unknown' }}</td>
               <td>
-                <span *ngIf="peer.marked" class="iep-icon iep-icon-checkbox-checked"></span>
-                <span *ngIf="!peer.marked" class="iep-icon iep-icon-checkbox-unchecked"></span>
+                <i *ngIf="peer.marked" class="bi bi-check-square-fill text-success"></i>
+                <i *ngIf="!peer.marked" class="bi bi-square"></i>
               </td>
               <td>
                 <span *ngIf="peer.apiEnabled" class="badge text-bg-success">ENABLED</span>
