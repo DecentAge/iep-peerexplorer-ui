@@ -83,14 +83,13 @@ export class PeersComponent implements OnInit {
     alert(`Peer Details:\nIP: ${peer.announcedAddress || peer.address}\nVersion: ${peer.applicationVersion || 'Unknown'}`);
   }
 
-  // Get the latest CPU usage from history array
+  // Get the latest CPU usage from history array (already in percentage)
   getLatestCpuUsage(peer: Peer): number {
     const history = peer.peerState?.history_SystemLoadAverage;
-    const processors = peer.peerState?.availableProcessors;
 
-    if (history && history.length > 0 && processors) {
+    if (history && history.length > 0) {
       const latestLoad = history[history.length - 1];
-      return Math.round(latestLoad * 100 / processors);
+      return Math.round(latestLoad);
     }
 
     return 0;
