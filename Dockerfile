@@ -26,7 +26,7 @@ FROM nginx:alpine AS deploy
 
 # Copy the build output to replace the default nginx contents
 COPY --from=build /app/dist/iep-peerexplorer-ui /usr/share/nginx/html
-COPY --from=build /build/iep-peerexplorer-ui.zip /build/iep-peerexplorer.zip
+COPY --from=build /build/iep-peerexplorer-ui.zip /build/iep-peerexplorer-ui.zip
 # Copy custom nginx config if needed
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

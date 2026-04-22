@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "iep-peerexplorer": {
+    "iep-peerexplorer-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,7 +42,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/iep-peerexplorer",
+            "outputPath": "dist/iep-peerexplorer-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -102,10 +102,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "iep-peerexplorer:build:production"
+              "browserTarget": "iep-peerexplorer-ui:build:production"
             },
             "development": {
-              "browserTarget": "iep-peerexplorer:build:development"
+              "browserTarget": "iep-peerexplorer-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -113,7 +113,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "iep-peerexplorer:build"
+            "browserTarget": "iep-peerexplorer-ui:build"
           }
         },
         "test": {

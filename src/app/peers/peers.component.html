@@ -52,22 +52,22 @@
                 <span *ngIf="peer.state === -1" class="badge text-bg-danger">OFFLINE</span>
                 <span *ngIf="peer.blacklisted" class="badge text-bg-danger ms-1">BLACKLISTED</span>
               </td>
-              <td>{{ peer.rank || 'N/A' }}</td>
+              <td>{{ peer.rank ? (peer.rank | number:'1.2-2') : 'N/A' }}</td>
               <td class="text-nowrap">{{ peer.announcedAddress || peer.address }}</td>
               <td>{{ peer.numberOfActivePeers || 0 }}</td>
               <td>
                 <div>
-                  <span [ngClass]="{'text-success': getCpuValue(peer) < 50, 'text-warning': getCpuValue(peer) >= 50 && getCpuValue(peer) < 80, 'text-danger': getCpuValue(peer) >= 80}">{{ peer.cpuUsage || 'N/A' }}</span>
+                  <span [ngClass]="{'text-warning': getCpuValue(peer) >= 50 && getCpuValue(peer) < 80, 'text-danger': getCpuValue(peer) >= 80}">{{ (peer.peerState?.history_SystemLoadAverage?.[(peer.peerState?.history_SystemLoadAverage?.length || 1) - 1] || 0) | number:'1.2-2' }} %</span>
                 </div>
               </td>
               <td>
                 <div class="cpu-history-chart">
-                  <!-- Simple CPU history visualization -->
+                  <!-- CPU history visualization from API data -->
                   <div class="d-flex align-items-center justify-content-center" style="height: 20px">
-                    <div *ngFor="let n of [0,1,2,3,4]"
+                    <div *ngFor="let cpuVal of (peer.peerState?.history_SystemLoadAverage || []).slice(-10)"
                          class="mx-1"
-                         style="width: 4px; height: 16px; background-color: #e72d45; opacity: 0.7;"
-                         [style.height.px]="4 + (getCpuValue(peer)/25 * 12) * Math.random()">
+                         style="width: 4px; background-color: #e72d45; opacity: 0.7;"
+                         [style.height.px]="4 + (cpuVal / (peer.peerState?.availableProcessors || 1) * 100 / 6.25)">
                     </div>
                   </div>
                 </div>
@@ -76,8 +76,8 @@
               <td>{{ peer.blocks || 'N/A' }}</td>
               <td>{{ peer.applicationVersion || 'Unknown' }}</td>
               <td>
-                <span *ngIf="peer.marked" class="iep-icon iep-icon-checkbox-checked"></span>
-                <span *ngIf="!peer.marked" class="iep-icon iep-icon-checkbox-unchecked"></span>
+                <i *ngIf="peer.marked" class="bi bi-check-square-fill text-success"></i>
+                <i *ngIf="!peer.marked" class="bi bi-square"></i>
               </td>
               <td>
                 <span *ngIf="peer.apiEnabled" class="badge text-bg-success">ENABLED</span>

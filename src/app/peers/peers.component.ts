@@ -35,17 +35,19 @@ export class PeersComponent implements OnInit {
     this.isReloading = true;
     this.peerService.getPeers(this.currentPage, this.itemsPerPage).subscribe({
       next: (data) => {
-        // Enhance the peer data with additional properties to match the original design
+        // Map the peer data from API response
         this.peers = data.map(peer => ({
           ...peer,
           connected: peer.state === 1,
-          lastConnected: new Date(),
-          rank: Math.floor(Math.random() * 100), // Dummy data
-          cpuUsage: Math.floor(Math.random() * 100), // Dummy data (number without %)
-          lastFeeder: 'N/A',
-          blocks: Math.floor(Math.random() * 1000000), // Dummy data
-          marked: Math.random() > 0.8, // Dummy data
-          apiEnabled: Math.random() > 0.5 // Dummy data
+          lastConnected: peer.lastConnected ? new Date(peer.lastConnected) : new Date(),
+          rank: peer.peerState?.rank || 0,
+          cpuUsage: this.getLatestCpuUsage(peer),
+          lastFeeder: peer.peerState?.lastBlockchainFeeder || 'N/A',
+          blocks: peer.peerState?.numberOfBlocks || 0,
+          marked: peer.services?.includes('HALLMARK') || false,
+          apiEnabled: peer.peerState?.apiServerEnable || false,
+          numberOfActivePeers: peer.peerState?.numberOfActivePeers || 0,
+          applicationVersion: peer.version || 'Unknown'
         }));
         this.loading = false;
         this.isReloading = false;
@@ -79,6 +81,18 @@ export class PeersComponent implements OnInit {
     // In a real app, this would open a modal or navigate to a details page
     console.log('Viewing details for peer:', peer);
     alert(`Peer Details:\nIP: ${peer.announcedAddress || peer.address}\nVersion: ${peer.applicationVersion || 'Unknown'}`);
+  }
+
+  // Get the latest CPU usage from history array (already in percentage)
+  getLatestCpuUsage(peer: Peer): number {
+    const history = peer.peerState?.history_SystemLoadAverage;
+
+    if (history && history.length > 0) {
+      const latestLoad = history[history.length - 1];
+      return Math.round(latestLoad);
+    }
+
+    return 0;
   }
 
   // Format CPU usage with % symbol

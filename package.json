@@ -1,5 +1,5 @@
 {
-  "name": "iep-peerexplorer",
+  "name": "iep-peerexplorer-ui",
   "version": "0.0.0",
   "scripts": {
     "prestart": "npm install",
@@ -8,8 +8,8 @@
     "build": "ng build --configuration=production --base-href /peerexplorer/ --deploy-url /peerexplorer/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "docker:build": "docker build -t iep-peerexplorer .",
-    "docker:run": "docker run -p 4200:80 iep-peerexplorer",
+    "docker:build": "docker build -t iep-peerexplorer-ui .",
+    "docker:run": "docker run -p 4200:80 iep-peerexplorer-ui",
     "docker:compose": "docker-compose up -d",
     "docker:compose:build": "docker-compose up -d --build",
     "docker:stop": "docker-compose down"

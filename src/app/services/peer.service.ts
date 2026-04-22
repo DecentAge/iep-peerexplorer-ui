@@ -17,30 +17,26 @@ export class PeerService {
     this.peerEndPoint = 'api/nodes';
   }
 
-  getPeers(page: number, results: number): Observable<Peer[]> {
+  getPeers(page: number, results: number, filter: string = 'numberOfActivePeers'): Observable<Peer[]> {
     const params = {
       page: page.toString(),
       results: results.toString(),
-      filter: 'numberOfActivePeers',
+      filter: filter,
       order: 'desc'
     };
 
     return this.http.get<Peer[]>(`${this.apiUrl}${this.peerEndPoint}`, { params });
   }
 
-  getStats(): Observable<PeerStats> {
-    // For development, return mock data
-    // In production, this would call the actual API
-    return of({
-      connectedPeers: Math.floor(Math.random() * 200) + 50, // random between 50-250
-      totalPeers: Math.floor(Math.random() * 500) + 200,    // random between 200-700
-      maxPeers: 1000,
-      lastUpdate: new Date().toISOString()
-    }).pipe(
-      catchError(this.handleError<PeerStats>('getStats', {
-        connectedPeers: 0,
-        totalPeers: 0,
-        maxPeers: 0,
+  getTopNodeByRank(): Observable<Peer[]> {
+    return this.getPeers(1, 1, 'rank');
+  }
+
+  getStats(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}api/getStats`).pipe(
+      catchError(this.handleError<any>('getStats', {
+        totalNodes: 0,
+        activeNodes: 0,
         lastUpdate: new Date().toISOString()
       }))
     );

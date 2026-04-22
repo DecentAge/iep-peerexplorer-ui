@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  iep-peerexplorer:
+  iep-peerexplorer-ui:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: iep-peerexplorer
+    container_name: iep-peerexplorer-ui
     ports:
       - "4200:80"
     restart: unless-stopped
@@ -13,4 +13,4 @@ services:
       - NODE_ENV=production
     # For development with live reload
     # volumes:
-    #   - ./dist/iep-peerexplorer:/usr/share/nginx/html
+    #   - ./dist/iep-peerexplorer-ui:/usr/share/nginx/html
