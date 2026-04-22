@@ -57,7 +57,7 @@
               <td>{{ peer.numberOfActivePeers || 0 }}</td>
               <td>
                 <div>
-                  <span [ngClass]="{'text-success': getCpuValue(peer) < 50, 'text-warning': getCpuValue(peer) >= 50 && getCpuValue(peer) < 80, 'text-danger': getCpuValue(peer) >= 80}">{{ peer.cpuUsage }}%</span>
+                  <span [ngClass]="{'text-warning': getCpuValue(peer) >= 50 && getCpuValue(peer) < 80, 'text-danger': getCpuValue(peer) >= 80}">{{ (peer.peerState?.history_SystemLoadAverage?.[(peer.peerState?.history_SystemLoadAverage?.length || 1) - 1] || 0) | number:'1.2-2' }}%</span>
                 </div>
               </td>
               <td>
