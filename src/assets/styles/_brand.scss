@@ -1,0 +1,190 @@
+// Infinity Economics Brand Styles
+
+// Brand colors
+$pink: #e72d45;
+$orange: #f3931b;
+$white: #fff;
+$black: #000;
+$grey: #f6f7f8;
+$grey2: #ddd;
+$dark-grey: #474747;
+$light-grey: #f1f2f3;
+
+// Brand gradient
+@mixin brand-gradient {
+  background: $pink; /* Old browsers */
+  background: -moz-linear-gradient(left, $pink 0%, $orange 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, $pink 0%, $orange 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, $pink 0%, $orange 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$pink}', endColorstr='#{$orange}', GradientType=1); /* IE6-9 */
+}
+
+// Brand button styles
+.btn-infinity {
+  color: $white;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 50px !important;
+  @include brand-gradient;
+
+  &:hover, &:focus, &:active {
+    background: #2b2b2b;
+    color: $white;
+  }
+}
+
+// Outline button with gradient border
+.btn-infinity-outline {
+  position: relative;
+  z-index: 1;
+  color: $pink;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 50px !important;
+  background: transparent;
+  padding: 7px 20px;
+  border: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    border-radius: 50px !important;
+    @include brand-gradient;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    z-index: -1;
+    border-radius: 50px !important;
+    background: $white;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    color: $white;
+
+    &:after {
+      @include brand-gradient;
+    }
+  }
+}
+
+// Navbar styling
+.navbar-default {
+  font-family: 'Montserrat', sans-serif;
+  @include brand-gradient;
+  border: none;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-default .navbar-nav > li {
+  padding: 11px 0 15px 0;
+  border-top: 4px solid transparent;
+}
+
+.navbar-default .navbar-nav > li.active {
+  border-top: 4px solid $white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+// Pagination styling
+.pagination > li > a {
+  border-radius: 50% !important;
+  margin: 0 5px;
+  padding: 6px 12px;
+  min-width: 34px;
+  text-align: center;
+  color: #ddd;
+}
+
+.pagination > li > a:hover {
+  @include brand-gradient;
+  color: $white;
+  border-color: transparent;
+}
+
+.pagination > li.active > a,
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  border: 1px solid transparent;
+  @include brand-gradient;
+}
+
+// Panel styling
+.panel, .card {
+  border-bottom: 3px solid $pink;
+  border-radius: 6px !important;
+  padding: 15px 0;
+  box-shadow: none;
+}
+
+// Infinity reload button
+.reload-btn {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  font-size: 14px;
+  color: $pink;
+  line-height: 16px;
+  padding: 10px 15px;
+  border-radius: 50px !important;
+  min-width: 130px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    border-radius: 50px !important;
+    @include brand-gradient;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    z-index: -1;
+    border-radius: 50px !important;
+    background: $white;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    color: $white;
+
+    &:after {
+      @include brand-gradient;
+    }
+  }
+}

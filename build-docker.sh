@@ -12,6 +12,6 @@ CONTAINER_ID=$(docker create --rm --name iep-peerexplorer-ui-extract decentage/i
 mkdir -p ./build
 
 # Copy the compiled package from the container to the host
-docker cp ${CONTAINER_ID}:/build/iep-peerexplorer-ui.zip ./build
+docker cp ${CONTAINER_ID}:/build/iep-peerexplorer.zip ./build
 
 docker rm iep-peerexplorer-ui-extract

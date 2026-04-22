@@ -1,0 +1,36 @@
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="footer-brand">
+          <span class="ms-2">Infinity Economics Platform</span>
+        </div>
+        <div class="footer-text">
+          This website is owned by the <span class="text-highlight">Infinity community</span> and managed by the <span class="text-highlight">Infinity Foundation</span>.
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="footer-stats">
+          <div class="footer-stat-item">
+            <span class="stat-label">Last Update:</span>
+            <span class="stat-value">{{ lastUpdate | date:'medium' }}</span>
+          </div>
+          <div class="footer-stat-item">
+            <span class="stat-label">API Endpoint:</span>
+            <span class="stat-value">
+              <i class="bi" [ngClass]="{'bi-check-circle-fill text-success': connected, 'bi-x-circle-fill text-danger': !connected}"></i>
+              {{ apiEndpoint }}
+            </span>
+          </div>
+          <div class="footer-stat-item">
+            <span class="stat-label">Version:</span>
+            <span class="stat-value">{{ version }}</span>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          © {{ currentYear }} Infinity Economics Platform. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

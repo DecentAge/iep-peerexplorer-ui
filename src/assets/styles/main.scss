@@ -1,3 +1,5 @@
+/* Main styles - no imports needed as they are already imported in styles.scss */
+
 /* body */
 body {
     padding: 80px 10px 0px;
@@ -30,7 +32,7 @@ a:focus, a:hover {
     // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e72d45',endColorstr='#f3931b',GradientType=1 );
     // background-image: url(../images/background.png);
     // background-size: cover;
-    background: linear-gradient(to right, #e72d45 0%, #f3931b 100%);
+    @include brand-gradient;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e72d45',endColorstr='#f3931b',GradientType=1 );
     transition: all 0.1s ;
 }
@@ -188,7 +190,7 @@ table.dataTable, table.dataTable.no-footer{
         padding: 15px 0;
       .panel-heading{
         border: 0;
-      }    
+      }
     }
 }
 
@@ -220,8 +222,8 @@ table.dataTable, table.dataTable.no-footer{
         margin-left: 0;
     }
 }
-.nvtooltip{ 
-    color:#fff; border:none; border-radius:50px !important; background-size: 200% auto;    background-image: linear-gradient(to right, #e72d45 0%, #f3931b 100%);
+.nvtooltip{
+    color:#fff; border:none; border-radius:50px !important; @include brand-gradient;
 }
 
 .actv-node{
@@ -242,8 +244,8 @@ table.dataTable, table.dataTable.no-footer{
     .panel-body table tbody tr td, .panel-body table tbody tr td a.pointer{ font-size:12px; background-color:#fff ; font-family:Montserrat; font-weight:600; color:#666; }
     .panel-body table tbody tr td span{color:#666 !important; display:inline-block;}
     .panel-body table tbody tr td a { color:#e72d45; background-color: transparent; font-family:Montserrat; font-weight:600;}
-    
-    span{ 
+
+    span{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -262,7 +264,7 @@ table.dataTable, table.dataTable.no-footer{
         // background: -webkit-linear-gradient(-45deg, #e72d45 24%,#e73044 42%,#ed5d31 53%,#f28c1e 77%,#f3931b 100%); /* Chrome10-25,Safari5.1-6 */
         // background: linear-gradient(135deg, #e72d45 24%,#e73044 42%,#ed5d31 53%,#f28c1e 77%,#f3931b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e72d45', endColorstr='#f3931b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-        background-size: 200% auto;    background-image: linear-gradient(to right, #e72d45 0%, #f3931b 100%);
+        @include brand-gradient;
         &:after{
             position: absolute;
             content: '';
@@ -277,14 +279,14 @@ table.dataTable, table.dataTable.no-footer{
         }
         &:hover{
             color:#fff;
-        } 
+        }
         &:hover:after{
-            background-size: 200% auto;    background-image: linear-gradient(to right, #e72d45 0%, #f3931b 100%);
+            @include brand-gradient;
 
         }
     }
 
-} 
+}
 
 .footer { color: #474747; background-color: #ffffff; display: flex; border-radius: 6px!important; margin: 15px; padding: 15px; }
 
@@ -319,7 +321,7 @@ table.dataTable, table.dataTable.no-footer{
 
 .iep-icon-checkbox-checked {
     opacity: 0.7;
-    background-image: url(../../../iep-peerexplorer-angular/iep-peerexplorer/src/assets/images/339-checkbox-checked.png);
+    background-image: url(../images/339-checkbox-checked.png);
     width: 16px;
     height: 16px;
     background-size: 16px 16px;
@@ -328,7 +330,7 @@ table.dataTable, table.dataTable.no-footer{
 
 .iep-icon-checkbox-unchecked {
     opacity: 0.7;
-    background-image: url(../../../iep-peerexplorer-angular/iep-peerexplorer/src/assets/images/340-checkbox-unchecked.png);
+    background-image: url(../images/340-checkbox-unchecked.png);
     width: 16px;
     height: 16px;
     background-size: 16px 16px;
@@ -338,7 +340,7 @@ table.dataTable, table.dataTable.no-footer{
 .iep-icon-download {
     position: relative;
     float: left;
-    background-image: url(../../../iep-peerexplorer-angular/iep-peerexplorer/src/assets/images/download.png);
+    background-image: url(../images/download.png);
     width: 16px;
     height: 16px;
     background-size: 16px 16px;
@@ -348,7 +350,7 @@ table.dataTable, table.dataTable.no-footer{
 .iep-icon-scan {
     position: relative;
     float: left;
-    background-image: url(../../../iep-peerexplorer-angular/iep-peerexplorer/src/assets/images/scan.png);
+    background-image: url(../images/scan.png);
     width: 16px;
     height: 16px;
     background-size: 16px 16px;
@@ -358,7 +360,7 @@ table.dataTable, table.dataTable.no-footer{
 .iep-icon-running {
     position: relative;
     float: left;
-    background-image: url(../../../iep-peerexplorer-angular/iep-peerexplorer/src/assets/images/running.png);
+    background-image: url(../images/running.png);
     width: 16px;
     height: 16px;
     background-size: 16px 16px;

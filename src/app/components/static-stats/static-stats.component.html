@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row stats-boxes">
+    <!-- Open API -->
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
+      <div class="stats-card">
+        <div class="stats-icon">
+          <i class="bi bi-cloud"></i>
+        </div>
+        <h3 class="stats-title">Open API</h3>
+        <div class="stats-value" [class.text-success]="apiCount > 0" [class.text-danger]="apiCount === 0">
+          {{ apiCount || 0 }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Syncing -->
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
+      <div class="stats-card">
+        <div class="stats-icon">
+          <i class="bi bi-arrow-repeat"></i>
+        </div>
+        <h3 class="stats-title">Syncing</h3>
+        <div class="stats-value">
+          {{ syncingCount || 0 }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Nodes -->
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
+      <div class="stats-card">
+        <div class="stats-icon">
+          <i class="bi bi-hdd-network"></i>
+        </div>
+        <h3 class="stats-title">Total Nodes</h3>
+        <div class="stats-value">
+          {{ totalNodes || 0 }}
+        </div>
+      </div>
+    </div>
+
+    <!-- SSL API -->
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
+      <div class="stats-card">
+        <div class="stats-icon">
+          <i class="bi bi-shield-lock"></i>
+        </div>
+        <h3 class="stats-title">SSL API</h3>
+        <div class="stats-value">
+          {{ sslApiCount || 0 }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Most Common Version -->
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
+      <div class="stats-card">
+        <div class="stats-icon">
+          <i class="bi bi-code-square"></i>
+        </div>
+        <h3 class="stats-title">Common Version</h3>
+        <div class="stats-value">
+          {{ commonVersion || 'Unknown' }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Node -->
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
+      <div class="stats-card">
+        <div class="stats-icon">
+          <i class="bi bi-star"></i>
+        </div>
+        <h3 class="stats-title">Top Node</h3>
+        <div class="stats-value node-ip">
+          {{ topNode || 'N/A' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

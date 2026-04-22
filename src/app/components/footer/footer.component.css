@@ -1,0 +1,75 @@
+.footer {
+  background-color: #2d2d2d;
+  color: #d7d7d7;
+  padding: 20px 0;
+  font-size: 13px;
+  position: relative;
+  margin-top: 40px;
+  border-top: 3px solid #e72d45;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-text {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  font-size: 13px;
+  max-width: 500px;
+}
+
+.footer-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+.footer{background-color:#2d2d2d;color:#d7d7d7;padding:20px 0;font-size:13px;position:relative;margin-top:40px;border-top:3px solid #e72d45}.footer-brand{display:flex;align-items:center;font-size:16px;font-weight:600;margin-bottom:10px;color:#fff}.footer-text{margin-bottom:15px;line-height:1.6;font-size:13px;max-width:500px}.footer-stats{display:flex;flex-direction:column;align-items:flex-end;margin-bottom:10px}.footer-stat-item{margin-bottom:5px;display:flex;align-items:center}.footer-stat-item .stat-label{font-weight:600;margin-right:8px;color:#a3a3a3}.footer-stat-item .stat-value{color:#fff}.footer-stat-item .stat-value i{margin-right:5px}.footer-copyright{text-align:right;color:#a3a3a3;font-size:12px;margin-top:10px}.footer .text-highlight{color:#e72d45;font-weight:500}@media (max-width:992px){.footer-stats{align-items:flex-start;margin-top:20px}.footer-copyright{text-align:left}}
+.footer-stat-item {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-stat-item .stat-label {
+  font-weight: 600;
+  margin-right: 8px;
+  color: #a3a3a3;
+}
+
+.footer-stat-item .stat-value {
+  color: #fff;
+}
+
+.footer-stat-item .stat-value i {
+  margin-right: 5px;
+}
+
+.footer-copyright {
+  text-align: right;
+  color: #a3a3a3;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.footer .text-highlight {
+  color: #e72d45;
+  font-weight: 500;
+}
+
+@media (max-width: 992px) {
+  .footer-stats {
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .footer-copyright {
+    text-align: left;
+  }
+}

@@ -1,154 +1,66 @@
-# Infinity Economics Platform (IEP) Peer Eplorer UI
-Infinity Economics is a new kind of cryptocurrency ecosystem equipped with total financial and economic features
+# IEP Peer Explorer
 
-This application is used to monitor all peers in the network and is displaying the status and details for each peer.
+A web application for exploring the Infinity Economics Platform peers network.
 
-## Table of Contents
-- [Getting Started](#getting-started)
+## Development server
 
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Features
-- Global statistics across all peers
-- List of all peers in the network
-- Search function to find peer by IP
-- Display information about each peer
-- Display details for all peers that are accessible via node API
+## Docker Support
 
-## Getting Started
-### Configuration
+This project includes Docker configuration for easy deployment.
 
-You can configure several values for the app. The config file is located in `/app/env.config.js`.
+### Build and run with Docker
 
-### Prerequisites
+```bash
+# Build the Docker image
+npm run docker:build
 
-You need to have following tools installed:
-````
-node.js | version 10.24.1 or higher
-````
-````
-npm | version 6.14.12 or higher
-````
+# Run the Docker container
+npm run docker:run
+```
 
-Run script to install dependencies via npm and bower:
-````
-npm run prestart
-````
+### Using Docker Compose
 
-### Building
+```bash
+# Build and start the container with docker-compose
+npm run docker:compose:build
 
-Build the production-ready static files (requires a webserver like nginx or apache to serve the static files output):
-````
-npm run build
-````
+# Start an existing container
+npm run docker:compose
 
-### Starting
+# Stop the container
+npm run docker:stop
+```
 
-Start the development server with hot-reload:
-````
-npm run start
-````
+Access the application at `http://localhost:4200/`.
 
-## Contributing
+## Build
 
-## License
-Copyright &copy; 2016-2017 Infinity Community.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License version 2,
-as published by the Free Software Foundation.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License version 2 for more details.
+## Development server
 
-You should have received a copy of the GNU General Public License version 2
-along with this program in the file COPYING.txt. If not, see
-<https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-This software also incorporates work under the MIT license.
+## Code scaffolding
 
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Copyright &copy; 2013-2015 The Nxt Core Developers.
+## Build
 
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License version 2,
-as published by the Free Software Foundation.
+## Running unit tests
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License version 2 for more details.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-You should have received a copy of the GNU General Public License version 2
-along with this program in the file COPYING.txt. If not, see
-<https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
+## Running end-to-end tests
 
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-The Nxt core development team will consider granting exceptions to allow use of
-this software under a different license on a case by case basis. Please see the
-DEVELOPER-AGREEMENT.txt file describing the developer agreement on copyright
-and licensing policies, and the AUTHORS.txt file for individual copyright holder
-information.
+## Further help
 
-The client UI component of this software, located under /html/ui, is distributed
-under the MIT license, a copy of which is available under /html/ui/LICENSE.txt.
-
-This software uses third party libraries, distributed under licenses described
-in 3RD-PARTY-LICENSES.txt.
-
-This software also incorporates work previously released with the NRS v1.4.18
-(and earlier) stable versions under the MIT license. To comply with the
-requirements of that license, the following permission notice, applicable to
-those parts of the code only, is included below:
-
-
-   Copyright &copy; 2013-2015 The Nxt Core Developers.
-
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
-
-   The above copyright notice and this permission notice shall be included in
-   all copies or substantial portions of the Software.
-
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-   THE SOFTWARE.
-
-
-## Credits
-We use alot of open source software at Infiity. We would like to send a big thank you to the
-following projects and the thousands of conributors that help make open source great!
-
-This application uses Open Source components. You can find the source code of their open source
-projects along with license information/link below. We acknowledge and are grateful to these
-developers for their contributions to open source.
-
-NXT 1.8.3
-https://bitbucket.org/JeanLucPicard/nxt/src
-
-BURST 1.0.0
-https://github.com/BurstProject/burstcoin
-
-TenderMint Core
-https://github.com/tendermint/tendermint
-
-Tendermint Socket Protocol (TMSP)
-https://github.com/tendermint/tmsp
-
-IPFS - The Permanent Web
-https://github.com/ipfs/ipfs
-
-ZeroNet - Decentralized Websites
-https://github.com/HelloZeroNet/ZeroNet
-
-## Thanks
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
