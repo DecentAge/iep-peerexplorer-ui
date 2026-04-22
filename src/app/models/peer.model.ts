@@ -1,3 +1,19 @@
+export interface PeerState {
+  rank?: number;
+  SystemLoadAverage?: number;
+  availableProcessors?: number;
+  lastBlockchainFeeder?: string;
+  numberOfBlocks?: number;
+  apiServerEnable?: boolean;
+  numberOfActivePeers?: number;
+  history_SystemLoadAverage?: number[];
+  freeMemory?: number;
+  totalMemory?: number;
+  version?: string;
+  apiSSL?: boolean;
+  numberOfPeers?: number;
+}
+
 export interface Peer {
   id: string;
   address: string;
@@ -19,9 +35,11 @@ export interface Peer {
   blacklisted?: boolean;
   peerPort?: number;
   services?: any[];
+  version?: string;
+  lastConnected?: string | Date;
+  peerState?: PeerState;
   // Additional properties needed for the template
   connected?: boolean;
-  lastConnected?: number | Date;
   rank?: number;
   cpuUsage?: number;
   lastFeeder?: string;
