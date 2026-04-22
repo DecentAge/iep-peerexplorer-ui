@@ -41,7 +41,7 @@ export class PeersComponent implements OnInit {
           connected: peer.state === 1,
           lastConnected: peer.lastConnected ? new Date(peer.lastConnected) : new Date(),
           rank: peer.peerState?.rank || 0,
-          cpuUsage: peer.peerState?.SystemLoadAverage ? Math.round(peer.peerState.SystemLoadAverage * 100 / peer.peerState.availableProcessors) : 0,
+          cpuUsage: peer.peerState?.SystemLoadAverage && peer.peerState?.availableProcessors ? Math.round(peer.peerState.SystemLoadAverage * 100 / peer.peerState.availableProcessors) : 0,
           lastFeeder: peer.peerState?.lastBlockchainFeeder || 'N/A',
           blocks: peer.peerState?.numberOfBlocks || 0,
           marked: peer.blacklisted || false,
