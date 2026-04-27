@@ -5,6 +5,7 @@ import { PeerStats } from '../../models/peer.model';
 
 @Component({
   selector: 'app-static-stats',
+  standalone: false,
   templateUrl: './static-stats.component.html',
   styleUrls: ['./static-stats.component.css']
 })

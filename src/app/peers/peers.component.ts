@@ -4,6 +4,7 @@ import { Peer, PeerStats } from '../models/peer.model';
 
 @Component({
   selector: 'app-peers',
+  standalone: false,
   templateUrl: './peers.component.html',
   styleUrls: ['./peers.component.scss']
 })

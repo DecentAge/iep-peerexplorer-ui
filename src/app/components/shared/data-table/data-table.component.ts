@@ -15,6 +15,7 @@ export interface PaginationConfig {
 
 @Component({
   selector: 'app-data-table',
+  standalone: false,
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
