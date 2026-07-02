@@ -1,6 +1,6 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'https://iep-dev-devnet.decentage.io/peerexplorer-backend/',// Adjust this URL to match your original project's production API URL
+  apiUrl: '/peerexplorer-backend/', // same-origin (relative): the UI calls the backend on whatever host it is served from (prod/test/…), via the tunnel ingress /peerexplorer-backend/*
   blockexplorerUrl: 'https://explorer.infinity-economics.org'
 };
