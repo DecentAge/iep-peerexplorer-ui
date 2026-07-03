@@ -1,3 +1,14 @@
+# Changelog
+
+## [Unreleased]
+
+## [0.4.1] - 2026-06-24
+### Changed
+- Upgraded to Angular 20 (ng-bootstrap 19, TypeScript 5.8, zone.js 0.15) on Node 22 build images; reproducible npm ci builds with committed package-lock.json.
+- UI/styling consistency refinements.
+
+## [0.3.x and earlier]
+
 # Release 0.3.3
 
 # Release 0.3.2

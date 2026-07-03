@@ -1,0 +1,128 @@
+// Navbar styles
+.navbar-default {
+  padding: 0;
+  background: linear-gradient(90deg, #e72d45 0%, #ff7800 100%);
+  border: none;
+
+  .navbar-nav > li {
+    padding: 11px 0 15px 0;
+    border-top: 4px solid transparent;
+
+    &.active {
+      border-top: 4px solid #ffffff;
+    }
+
+    > a {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 10px;
+  }
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+}
+
+.search-and-type {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    min-width: 200px;
+    border-radius: 50px 0 0 50px !important;
+  }
+
+  .btn-infinity {
+    border-radius: 0 50px 50px 0 !important;
+    color: #ffffff;
+  }
+
+  span.btn-infinity {
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 50px !important;
+    min-width: 100px;
+    text-align: center;
+  }
+}
+
+// Footer styling
+.footer {
+  color: #333333;
+  background-color: #ffffff;
+  display: flex;
+  border-radius: 6px !important;
+  margin: 15px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  .badge {
+    background-color: #f5f5f5 !important;
+    color: #666666;
+    padding-left: 0;
+    padding-right: 0;
+    white-space: normal;
+    font-weight: 600;
+  }
+
+  .footerTex {
+    font-size: 16px !important;
+    font-weight: 800 !important;
+  }
+
+  .navbar-brand img {
+    margin-right: 10px;
+  }
+}
+
+// App-wide component styles
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+// Button styling
+.btn-infinity {
+  background: #e72d45;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+
+  &:hover, &:focus, &:active {
+    background: #c41d33;
+    color: #ffffff;
+  }
+}

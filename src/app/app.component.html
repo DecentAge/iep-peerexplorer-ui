@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-default fixed-top" role="navigation">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <div class="header-wrapper">
+        <!-- Logo on the left -->
+        <a routerLink="/" class="navbar-brand">
+          <img src="assets/images/iep-logo.png" style="margin-left:20px;height:40px;">
+        </a>
+
+        <!-- Toggle button for mobile -->
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#myNavbar" (click)="isCollapsed = !isCollapsed">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav items and buttons aligned to the right -->
+        <div class="collapse navbar-collapse" id="myNavbar" [ngbCollapse]="isCollapsed">
+          <div class="ms-auto d-flex align-items-center">
+            <!-- Navigation Links -->
+            <ul class="navbar-nav me-3">
+              <li class="nav-item active"><a class="nav-link" routerLink="/">Nodes</a></li>
+              <li class="nav-item"><a class="nav-link" [href]="blockexplorerUrl" target="_blank">Blockexplorer</a></li>
+            </ul>
+
+            <!-- Search Bar -->
+            <form class="d-flex me-3">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Enter IP address" name="search" [hidden]="!showSearchBar" [(ngModel)]="searchTerm" style="border-radius: 50px 0 0 50px !important;">
+                <button class="btn btn-infinity" [ngClass]="{'btn-infinity-enabled': showSearchBar}" type="submit" (click)="(!showSearchBar) ? showSearchBar = !showSearchBar : search()" style="border-radius: 0 50px 50px 0 !important;">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
+
+            <!-- Network Type Button -->
+            <span *ngIf="networkEnvironment === 'mainnet'" class="btn btn-infinity" type="label" title="Connected to MAINNET">
+              Mainnet
+            </span>
+            <span *ngIf="networkEnvironment === 'testnet'" class="btn btn-infinity" type="label" title="Connected to TESTNET">
+              Testnet
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="static-stats-container" style="margin-top: 80px; padding: 0 15px;">
+  <app-static-stats></app-static-stats>
+</div>
+
+<div class="container-fluid" style="margin-top: 20px;">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-7 col-sm-12 col-12">
+        <span class="navbar-brand">
+          Infinity Economics Platform
+        </span>
+      </div>
+      <div class="col-md-5 col-sm-12 col-12">
+        <span class="navbar-brand text-end float-end">
+          <span class="footerTex badge bg-secondary">Top Node : {{topNode}}</span> <br>
+          <span class="badge bg-secondary">Connected : {{connectedURL}}</span>
+          <span class="badge bg-secondary">Version : {{version}}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

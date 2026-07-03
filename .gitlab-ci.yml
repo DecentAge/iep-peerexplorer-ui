@@ -1,3 +1,21 @@
 include:
   - project: 'infinity-economics/iep-docker'
+    ref: ${CI_COMMIT_REF_NAME}
     file: '/gitlab/ci/docker-ci-cd.yml'
+
+# The shared docker-ci-cd.yml only builds + publishes THIS image; it does not
+# repackage iep-docker, so a UI/backend change never reaches the deploy on its own.
+# Trigger an iep-docker rebuild after docker-build so the new image is bundled.
+# Mirrors iep-node's trigger-iep-docker. forward:false so this project's variables
+# do not leak into the iep-docker pipeline.
+trigger-iep-docker:
+  stage: publish
+  needs: ["docker-build"]
+  only:
+    - develop
+    - master
+  trigger:
+    project: infinity-economics/iep-docker
+    branch: $CI_COMMIT_BRANCH
+    forward:
+      yaml_variables: false

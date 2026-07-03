@@ -1,0 +1,123 @@
+// This file should be replaced with the original _base.scss from /home/git/iep-peerexplorer-ui/app/styles/
+/* Base styles */
+// ===== BASE STYLES =====
+// Only element selectors, no classes here
+
+// Reset all border-radius by default
+* {
+  border-radius: 0 !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  padding: 80px 10px 0px;
+  font: 14px $font-family-base;
+  background-color: $body-bg;
+  color: $text-color;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-headings;
+  font-weight: $font-weight-bold;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: center;
+  }
+
+  td {
+    text-align: center;
+  }
+}
+
+input, button, select, textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul, ol {
+  padding-left: 2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+body {
+  padding: 80px 10px 0px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  background-color: #F4F4F4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+}
+
+/* Override Bootstrap's border-radius */
+* {
+  border-radius: 0 !important;
+}
+
+.tooltip {
+  z-index: 2000 !important;
+}
+
+/* Label */
+.label {
+  padding: .4em .6em .3em;
+}
+// Placeholder styles
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #0056b3;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #003d7a;
+    text-decoration: underline;
+  }
+}

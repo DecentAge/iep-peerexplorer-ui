@@ -1,0 +1,265 @@
+<div class="col-lg-12 peer-explorer">
+  <div class="active-node-header card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <p class="actv-node mb-0">All Nodes</p>
+      <div class="float-end">
+        <button class="btn btn-infinity" (click)="loadPeers()" title="Reload data" [disabled]="isReloading">
+          {{ isReloading ? 'Loading...' : 'Reload' }}
+          <i class="bi bi-arrow-repeat" [class.spin]="isReloading"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body p-4">
+      <div *ngIf="loading" class="text-center p-5">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <p class="mt-2">Loading peer data...</p>
+      </div>
+
+      <div *ngIf="!loading && peers.length === 0" class="alert alert-warning">
+        No peers found.
+      </div>
+
+      <div *ngIf="!loading && peers.length > 0" class="table-responsive">
+        <table class="table table-striped table-bordered dt-responsive nowrap peers-table">
+          <thead>
+            <tr>
+              <th>Connected</th>
+              <th>State</th>
+              <th>Rank</th>
+              <th>IP</th>
+              <th>Active Peers</th>
+              <th>CPU</th>
+              <th>CPU Load History</th>
+              <th>Last Feeder</th>
+              <th>Height</th>
+              <th>Version</th>
+              <th>Marked</th>
+              <th>API</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let peer of peers">
+              <!-- Connected -->
+              <td>
+                <i *ngIf="peer.active" class="bi bi-check-square-fill cb-on" title="Peer is connected"></i>
+                <span *ngIf="!peer.active" class="lds-ring lds-ring-sm" title="Peer not connected — reconnecting"><div></div><div></div><div></div><div></div></span>
+                <br>
+                <small class="text-muted" title="Last connected successfully">{{ peer.lastConnected | date:'short' }}</small>
+              </td>
+              <!-- State -->
+              <td class="text-center">
+                <ng-container *ngIf="peer.peerState; else stateNa">
+                  <i class="bi state-icon" [ngClass]="stateInfo(peer).icon" [title]="stateInfo(peer).title"></i>
+                </ng-container>
+                <ng-template #stateNa><span class="text-muted">n/a</span></ng-template>
+              </td>
+              <!-- Rank -->
+              <td>{{ peer.peerState?.rank != null ? (peer.peerState?.rank | number:'1.2-2') : 'n/a' }}</td>
+              <!-- IP -->
+              <td class="text-nowrap">
+                <a class="ip-link" (click)="openDetail(peer)">{{ peer._id || peer.address }}</a>
+              </td>
+              <!-- Active Peers -->
+              <td [title]="'Total peers: ' + (peer.peerState?.numberOfPeers || 0)">
+                {{ peer.peerState?.numberOfActivePeers != null ? peer.peerState?.numberOfActivePeers : 'n/a' }}
+              </td>
+              <!-- CPU -->
+              <td><span [ngClass]="cpuClass(peer)">{{ cpuPercent(peer) }} %</span></td>
+              <!-- CPU Load History -->
+              <td>
+                <div class="spark" title="CPU load history">
+                  <div class="spark-bar" *ngFor="let h of barHeights(peer.peerState?.history_SystemLoadAverage, 20, 50)" [style.height.px]="h"></div>
+                </div>
+              </td>
+              <!-- Last Feeder -->
+              <td class="text-nowrap">
+                <a class="ip-link" (click)="openByIp(peer.peerState?.lastBlockchainFeeder)">{{ peer.peerState?.lastBlockchainFeeder || 'n/a' }}</a>
+              </td>
+              <!-- Height -->
+              <td>{{ peer.peerState?.numberOfBlocks != null ? peer.peerState?.numberOfBlocks : 'n/a' }}</td>
+              <!-- Version -->
+              <td>{{ peer.version || 'n/a' }}</td>
+              <!-- Marked -->
+              <td class="text-center">
+                <i class="bi cb" [class.bi-check-square-fill]="hasService(peer,'HALLMARK')" [class.bi-square]="!hasService(peer,'HALLMARK')" title="Hallmark Protected"></i>
+              </td>
+              <!-- API -->
+              <td class="text-center">
+                <i class="bi cb" [class.bi-check-square-fill]="hasService(peer,'API')" [class.bi-square]="!hasService(peer,'API')" [title]="'API Enabled on Port ' + (peer.apiPort || '')"></i>
+              </td>
+              <!-- Country -->
+              <td class="text-center">
+                <span *ngIf="peer.geoip?.country_code" class="flag" [title]="peer.geoip?.country_name">{{ flagEmoji(peer.geoip?.country_code) }}</span>
+                <span *ngIf="!peer.geoip?.country_code" class="text-muted">n/a</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage - 1)"><i class="bi bi-chevron-left"></i></a>
+            </li>
+            <li class="page-item" *ngFor="let page of [1, 2, 3, 4, 5]" [class.active]="currentPage === page">
+              <a class="page-link" href="javascript:void(0)" (click)="changePage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage + 1)"><i class="bi bi-chevron-right"></i></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== Node Details modal ===================== -->
+<div class="node-modal-backdrop" *ngIf="selectedPeer" (click)="closeDetail()">
+  <div class="node-modal" (click)="$event.stopPropagation()">
+    <div class="node-modal-header">
+      <h3>Node Details - {{ selectedPeer._id || selectedPeer.address }}</h3>
+      <button class="node-modal-close" (click)="closeDetail()" title="Close">×</button>
+    </div>
+
+    <div class="node-modal-body" *ngIf="selectedPeer.peerState as ps">
+      <!-- Row 1: charts -->
+      <div class="node-grid">
+        <div class="node-card">
+          <div class="node-card-head">Single CPU Load <small>(%)</small></div>
+          <div class="node-card-body">
+            <div class="bars"><div class="bar" *ngFor="let h of barHeights(ps.history_SystemLoadAverage, 90, 60)" [style.height.px]="h"></div></div>
+          </div>
+        </div>
+        <div class="node-card">
+          <div class="node-card-head">Free Memory <small>(Bytes)</small></div>
+          <div class="node-card-body">
+            <div class="bars"><div class="bar" *ngFor="let h of barHeights(ps.history_freeMemory, 90, 60)" [style.height.px]="h"></div></div>
+          </div>
+        </div>
+        <div class="node-card">
+          <div class="node-card-head">Processing Latency <small>(ms)</small></div>
+          <div class="node-card-body">
+            <div class="bars"><div class="bar" *ngFor="let h of barHeights(ps.history_requestProcessingTime, 90, 60)" [style.height.px]="h"></div></div>
+          </div>
+        </div>
+        <div class="node-card">
+          <div class="node-card-head">Active Peers <small>(#)</small></div>
+          <div class="node-card-body">
+            <div class="bars"><div class="bar" *ngFor="let h of barHeights(ps.history_numberOfActivePeers, 90, 60)" [style.height.px]="h"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: service boxes -->
+      <div class="node-grid">
+        <div class="node-card">
+          <div class="node-card-head">Gateway Services</div>
+          <div class="node-card-body">
+            <span class="svc" [class.on]="ps.gatewayIPFS">IPFS</span>
+            <span class="svc" [class.on]="ps.gatewayTendermint">TM</span>
+            <span class="svc" [class.on]="ps.gatewayZeroNet">ZN</span>
+          </div>
+        </div>
+        <div class="node-card">
+          <div class="node-card-head">Proxy Services</div>
+          <div class="node-card-body">
+            <span class="svc" [class.on]="ps.proxyBTC">BTC</span>
+            <span class="svc" [class.on]="ps.proxyETH">ETH</span>
+            <span class="svc" [class.on]="ps.proxyLTC">LTC</span>
+            <span class="svc" [class.on]="ps.proxyXRP">XRP</span>
+            <span class="svc" [class.on]="ps.proxyMarket">MKT</span>
+          </div>
+        </div>
+        <div class="node-card">
+          <div class="node-card-head">Storage Services</div>
+          <div class="node-card-body">
+            <span class="svc" [class.on]="ps.storageMongodb">MO</span>
+            <span class="svc" [class.on]="ps.storageRethink">RT</span>
+            <span class="svc" [class.on]="ps.storagePSQL">PS</span>
+            <span class="svc" [class.on]="ps.storageMySQL">MY</span>
+          </div>
+        </div>
+        <div class="node-card">
+          <div class="node-card-head">Community Services</div>
+          <div class="node-card-body">
+            <span class="svc on">BX</span>
+            <span class="svc on">PX</span>
+            <span class="svc on">DC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: info boxes -->
+      <div class="node-grid">
+        <!-- Node Info I -->
+        <div class="node-card">
+          <div class="node-card-head">Node Info I</div>
+          <div class="node-card-body info">
+            <div class="info-row"><span class="k">API SSL</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.apiSSL" [class.bi-square]="!ps.apiSSL"></i></span></div>
+            <div class="info-row"><span class="k">API CORS</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.apiServerCORS" [class.bi-square]="!ps.apiServerCORS"></i></span></div>
+            <div class="info-row"><span class="k">API On</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.apiServerEnable" [class.bi-square]="!ps.apiServerEnable"></i></span></div>
+            <div class="info-row"><span class="k">Timeout</span><span class="v">{{ ps.apiServerIdleTimeout }}</span></div>
+            <div class="info-row"><span class="k">API Port</span><span class="v">{{ ps.apiServerPort }}</span></div>
+            <div class="info-row"><span class="k">SSL Port</span><span class="v">{{ ps.apiServerSSLPort }}</span></div>
+            <div class="info-row"><span class="k">Version</span><span class="v">{{ selectedPeer.version }}</span></div>
+            <div class="info-row"><span class="k">Autofee</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.correctInvalidFees" [class.bi-square]="!ps.correctInvalidFees"></i></span></div>
+            <div class="info-row"><span class="k">Difficulty</span><span class="v small">{{ ps.cumulativeDifficulty }}</span></div>
+            <div class="info-row"><span class="k">Min Rollback height</span><span class="v">{{ ps.currentMinRollbackHeight }}</span></div>
+          </div>
+        </div>
+        <!-- Node Info II -->
+        <div class="node-card">
+          <div class="node-card-head">Node Info II</div>
+          <div class="node-card-body info">
+            <div class="info-row"><span class="k">Hallmarked</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.enableHallmarkProtection" [class.bi-square]="!ps.enableHallmarkProtection"></i></span></div>
+            <div class="info-row"><span class="k">Download</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.isDownloading" [class.bi-square]="!ps.isDownloading"></i></span></div>
+            <div class="info-row"><span class="k">Scanning</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.isScanning" [class.bi-square]="!ps.isScanning"></i></span></div>
+            <div class="info-row"><span class="k">Ledgertrim</span><span class="v">{{ ps.ledgerTrimKeep }}</span></div>
+            <div class="info-row"><span class="k">Last Block</span><span class="v">{{ ps.numberOfBlocks }}</span></div>
+            <div class="info-row"><span class="k">Last Block ID</span><span class="v small">{{ ps.lastBlock }}</span></div>
+            <div class="info-row"><span class="k">Feeder IP</span><span class="v">{{ ps.lastBlockchainFeeder }}</span></div>
+            <div class="info-row"><span class="k">Feeder Blk</span><span class="v">{{ ps.lastBlockchainFeederHeight }}</span></div>
+            <div class="info-row"><span class="k">PLTime</span><span class="v">{{ ps.maxPrunableLifetime }}</span></div>
+            <div class="info-row"><span class="k">Rollback</span><span class="v">{{ ps.maxRollback }}</span></div>
+            <div class="info-row"><span class="k">MaxUTx</span><span class="v">{{ ps.maxUnconfirmedTransactions }}</span></div>
+          </div>
+        </div>
+        <!-- Node Info III -->
+        <div class="node-card">
+          <div class="node-card-head">Node Info III</div>
+          <div class="node-card-body info">
+            <div class="info-row"><span class="k">MaxUpload</span><span class="v">{{ ps.maxUploadFileSize }}</span></div>
+            <div class="info-row"><span class="k">Hallmark</span><span class="v">{{ selectedPeer.myHallmark || 'none' }}</span></div>
+            <div class="info-row"><span class="k">Active Peers</span><span class="v">{{ ps.numberOfActivePeers }}</span></div>
+            <div class="info-row"><span class="k">Total Peers</span><span class="v">{{ ps.numberOfPeers }}</span></div>
+            <div class="info-row"><span class="k">Rank</span><span class="v">{{ ps.rank != null ? (ps.rank | number:'1.2-3') : 'n/a' }}</span></div>
+            <div class="info-row"><span class="k">Websockets</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.useWebsocket" [class.bi-square]="!ps.useWebsocket"></i></span></div>
+            <div class="info-row"><span class="k">SuperNode</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="ps.superNodeEnable" [class.bi-square]="!ps.superNodeEnable"></i></span></div>
+            <div class="info-row"><span class="k">GeoIP</span><span class="v"><i class="bi cb" [class.bi-check-square-fill]="!!selectedPeer.geoip" [class.bi-square]="!selectedPeer.geoip"></i></span></div>
+            <div class="info-row"><span class="k">Country</span><span class="v">{{ selectedPeer.geoip?.country_name || 'n/a' }}</span></div>
+          </div>
+        </div>
+        <!-- Node Info IV -->
+        <div class="node-card">
+          <div class="node-card-head">Node Info IV</div>
+          <div class="node-card-body info">
+            <div class="info-row"><span class="k">Processors</span><span class="v">{{ ps.availableProcessors }}</span></div>
+            <div class="info-row"><span class="k">Threads</span><span class="v">{{ ps.ThreadCount }}</span></div>
+            <div class="info-row"><span class="k">Uptime</span><span class="v">{{ ps.Uptime }}</span></div>
+            <div class="info-row"><span class="k">OS Arch</span><span class="v">{{ ps.osArch }}</span></div>
+            <div class="info-row"><span class="k">OS Name</span><span class="v">{{ ps.osName }}</span></div>
+            <div class="info-row"><span class="k">OS Version</span><span class="v small">{{ ps.osVersion }}</span></div>
+            <div class="info-row"><span class="k">Total Mem</span><span class="v">{{ bytesToMb(ps.totalMemory) }}</span></div>
+            <div class="info-row"><span class="k">Max Mem</span><span class="v">{{ bytesToMb(ps.maxMemory) }}</span></div>
+            <div class="info-row"><span class="k">Free Mem</span><span class="v">{{ bytesToMb(ps.freeMemory) }}</span></div>
+            <div class="info-row"><span class="k">CPU Load</span><span class="v">{{ detailCpuLoad(selectedPeer) }}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
