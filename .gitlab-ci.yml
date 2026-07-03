@@ -13,7 +13,6 @@ trigger-iep-docker:
   needs: ["docker-build"]
   only:
     - develop
-    - master
   trigger:
     project: infinity-economics/iep-docker
     branch: $CI_COMMIT_BRANCH
