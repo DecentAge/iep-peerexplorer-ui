@@ -1,0 +1,14 @@
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
+/* Global gradient styling */
+.gradient-text {
+  background: linear-gradient(90deg,#e72d45 0,#ff7800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-bg {
+  background: linear-gradient(90deg,#e72d45 0,#ff7800 100%);
+}
+body{font-family:Arial,sans-serif;background-color:#f8f9fa;color:#333;min-height:100vh}.btn-infinity{background:#e72d45;color:#fff;border:none;font-weight:600;text-transform:uppercase;letter-spacing:.5px;transition:all .3s ease;border-radius:6px;padding:8px 15px;font-size:12px}.btn-infinity:hover,.btn-infinity:focus,.btn-infinity:active{background:#c41d33;color:#fff}.btn-infinity-enabled{background-color:#c41d33}.card{border-radius:6px;border:none;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);overflow:hidden}.card .card-header{padding:15px 20px;background:#f5f5f5;border-bottom:1px solid #efefef}.card .card-body{padding:20px}.text-highlight{color:#e72d45;font-weight:600}.table th{background-color:#f5f5f5;font-weight:600;font-size:12px;text-transform:uppercase}.table td{vertical-align:middle}.badge.bg-secondary{background-color:#f5f5f5;color:#666}.content-main{margin-top:70px}

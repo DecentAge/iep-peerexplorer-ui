@@ -1,0 +1,147 @@
+// This file should be replaced with the original _mixins.scss from /home/git/iep-peerexplorer-ui/app/styles/
+// Common mixins for the application
+// ===== MIXINS =====
+
+// Brand gradient mixin
+@mixin brand-gradient {
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, $pink 0%, $orange 100%);
+}
+
+// Text overflow handling
+@mixin dont-break-out {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+// Media query mixins
+@mixin media-breakpoint-up($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm - 1) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md - 1) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg - 1) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl - 1) { @content; }
+  }
+}
+
+// Button styles mixin
+@mixin button-variant($bg-color, $text-color, $hover-bg-color) {
+  background: $bg-color;
+  color: $text-color;
+
+  &:hover, &:focus, &:active, &.active {
+    background: $hover-bg-color;
+    color: $text-color;
+  }
+
+  &:active, &.active {
+    box-shadow: none;
+  }
+}
+
+// Flex layout mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@mixin brand-gradient {
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #e72d45 0%, #f3931b 100%);
+}
+
+@mixin dont-break-out {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+// Simple mixins to avoid compilation errors
+
+// Brand gradient
+@mixin brand-gradient {
+  background: linear-gradient(90deg, #e72d45 0%, #ff7800 100%);
+}
+
+// Media query shortcuts
+@mixin media-xs {
+  @media (max-width: 575px) { @content; }
+}
+
+@mixin media-sm {
+  @media (min-width: 576px) and (max-width: 767px) { @content; }
+}
+
+@mixin media-md {
+  @media (min-width: 768px) and (max-width: 991px) { @content; }
+}
+
+@mixin media-lg {
+  @media (min-width: 992px) and (max-width: 1199px) { @content; }
+}
+
+@mixin media-xl {
+  @media (min-width: 1200px) { @content; }
+}
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+// Placeholder mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  transition: $transition;
+}

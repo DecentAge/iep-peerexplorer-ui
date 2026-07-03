@@ -1,0 +1,184 @@
+/* ===== GLOBAL STYLES FOLLOWING ANGULAR STYLE GUIDE ===== */
+
+  &:hover, &:focus, &:active {
+    @include btn-infinity-hover;
+  }
+
+/* Third-party imports */
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+/* Import variables and mixins */
+@import 'assets/styles/_variables';
+@import 'assets/styles/_mixins';
+@import 'assets/styles/_brand';
+
+/* Global styles */
+body {
+  background-color: #f4f4f4;
+  font-family: 'Montserrat', sans-serif;
+  color: #474747;
+  padding: 80px 10px 0px;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+}
+
+.btn {
+  border-radius: 50px !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+app-footer {
+  flex-shrink: 0;
+}
+
+.badge {
+  border-radius: 50px !important;
+  padding: 0.4em 0.6em 0.3em;
+}
+
+/* Import original website styles */
+@import 'assets/styles/app';
+
+/* Custom Styles */
+.navbar {
+  padding: 0;
+  @include brand-gradient;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 15px 20px;
+}
+
+.navbar-nav .nav-item.active {
+  border-top: 4px solid #fff;
+}
+
+.navbar-nav .nav-item {
+  border-top: 4px solid transparent;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.search-and-type {
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  border-radius: 6px !important;
+  border-bottom: 3px solid #e72d45;
+  box-shadow: none;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: none;
+  padding: 15px;
+}
+
+.actv-node {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.012cm;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.table th {
+  background-color: #f1f2f3;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 16px;
+}
+
+.table td {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 16px;
+  border-color: #eff5f8;
+}
+
+.footer {
+  display: flex;
+  color: #474747;
+  background-color: #ffffff;
+  border-radius: 6px !important;
+  margin: 15px;
+  padding: 15px;
+}
+
+.footer .badge {
+  background-color: #f1f2f3 !important;
+  color: #535353;
+}
+
+.footer .footerTex {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+/* Anpassungen für responsive Tabellen */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Spinner-Animation */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Icon styles */
+.iep-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  opacity: 0.7;
+  margin-right: 5px;
+}
+
+.iep-icon-small {
+  width: 12px;
+  height: 12px;
+  background-size: 12px 12px;
+}

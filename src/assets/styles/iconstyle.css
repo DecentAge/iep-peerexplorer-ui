@@ -1,0 +1,207 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?qpai2b');
+  src:  url('../fonts/icomoon.eot?qpai2b#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?qpai2b') format('truetype'),
+    url('../fonts/icomoon.woff?qpai2b') format('woff'),
+    url('../fonts/icomoon.svg?qpai2b#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-testnet:before {
+  content: "\e92f";
+  color: #e94f60;
+}
+.icon-back:before {
+  content: "\e92e";
+  color: #fff;
+}
+.icon-Blockexplorer2:before {
+  content: "\e92b";
+}
+.icon-Peerexplorer2:before {
+  content: "\e92c";
+}
+.icon-Wallet:before {
+  content: "\e92d";
+}
+.icon-check2:before {
+  content: "\e917";
+  color: #6ac259;
+}
+.icon-minus-button:before {
+  content: "\e92a";
+  color: #fff;
+}
+.icon-plus-button:before {
+  content: "\e929";
+  color: #c0c1c1;
+}
+.icon-check .path1:before {
+  content: "\e926";
+  color: rgb(255, 255, 255);
+}
+.icon-check .path2:before {
+  content: "\e927";
+  margin-left: -1.01171875em;
+  color: rgb(0, 0, 0);
+}
+.icon-Accounts:before {
+  content: "\e900";
+}
+.icon-Base-Algo:before {
+  content: "\e901";
+}
+.icon-Block_Time:before {
+  content: "\e902";
+}
+.icon-Blockexplorer:before {
+  content: "\e903";
+}
+.icon-Check-Balance:before {
+  content: "\e904";
+}
+.icon-Data_encrypted:before {
+  content: "\e905";
+  color: #fff;
+}
+.icon-Efficient:before {
+  content: "\e906";
+  color: #fff;
+}
+.icon-email .path1:before {
+  content: "\e907";
+  color: rgb(243, 147, 27);
+}
+.icon-email .path2:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-email .path3:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-facebook .path1:before {
+  content: "\e90a";
+  color: rgb(59, 89, 152);
+}
+.icon-facebook .path2:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-Help_center:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-Latest_Version:before {
+  content: "\e90d";
+}
+.icon-Left_arrow:before {
+  content: "\e90e";
+  color: #f6a128;
+}
+.icon-login:before {
+  content: "\e90f";
+  color: #e72d45;
+}
+.icon-Nodes:before {
+  content: "\e910";
+}
+.icon-Open_API:before {
+  content: "\e911";
+  color: #ed6930;
+}
+.icon-Peerexplorer:before {
+  content: "\e912";
+}
+.icon-Personal_data_free:before {
+  content: "\e913";
+  color: #fff;
+}
+.icon-QR-codes:before {
+  content: "\e914";
+  color: #fff;
+}
+.icon-Reload:before {
+  content: "\e915";
+}
+.icon-Right_arrow:before {
+  content: "\e916";
+  color: #f6a128;
+}
+.icon-Search:before {
+  content: "\e928";
+  color: #fff;
+}
+.icon-Service-Monitor:before {
+  content: "\e918";
+}
+.icon-Smart_integration:before {
+  content: "\e919";
+  color: #fff;
+}
+.icon-SSL_API:before {
+  content: "\e91a";
+}
+.icon-Supply_Circulating:before {
+  content: "\e91b";
+}
+.icon-Syncing:before {
+  content: "\e91c";
+}
+.icon-Top_Node:before {
+  content: "\e91d";
+}
+.icon-Total_Nodes:before {
+  content: "\e91e";
+}
+.icon-Transactions:before {
+  content: "\e91f";
+}
+.icon-website .path1:before {
+  content: "\e920";
+  color: rgb(72, 160, 228);
+}
+.icon-website .path2:before {
+  content: "\e921";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-youtube .path1:before {
+  content: "\e922";
+  color: rgb(212, 36, 40);
+}
+.icon-youtube .path2:before {
+  content: "\e923";
+  margin-left: -1em;
+  color: rgb(204, 32, 45);
+}
+.icon-youtube .path3:before {
+  content: "\e924";
+  margin-left: -1em;
+  color: rgb(186, 32, 46);
+}
+.icon-youtube .path4:before {
+  content: "\e925";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}

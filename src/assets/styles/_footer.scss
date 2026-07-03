@@ -1,0 +1,63 @@
+// ===== FOOTER STYLES =====
+
+.footer {
+  color: $dark-grey;
+  background-color: $white;
+  display: flex;
+  border-radius: $border-radius !important;
+  margin: 15px;
+  padding: 15px;
+
+  .navbar-brand {
+    height: auto;
+    padding: 15px 0;
+  }
+
+  .label {
+    padding-left: 0;
+    padding-right: 0;
+
+    &.label-xs {
+      white-space: normal;
+      font-size: 10px;
+      font-weight: 600;
+      color: #535353;
+    }
+  }
+
+  .footerTex {
+    font-size: 16px !important;
+    font-weight: 800 !important;
+  }
+}
+// Global footer styles
+
+// Footer padding to ensure content doesn't get hidden behind the footer
+.footer-padding {
+  height: 80px;
+  width: 100%;
+}
+
+// Make sure the footer stays at the bottom on short pages
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .container-fluid {
+    flex: 1;
+  }
+
+  app-footer {
+    margin-top: auto;
+  }
+}
+
+// Add some space before the footer
+.container-fluid:last-of-type {
+  margin-bottom: 30px;
+}
+.footer-padding {
+  height: $footer-height;
+  width: 100%;
+}

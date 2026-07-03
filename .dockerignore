@@ -1,10 +1,61 @@
+# Node
 node_modules
-bower_components
+npm-debug.log
+yarn-error.log
+
+# Angular
+/.angular/cache
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+node_modules
+npm-debug.log
 dist
-package-lock.json
 .git
 .github
-.settings
-.project
+.angular/cache
 .vscode
-build-docker.sh
+.idea
+e2e
+coverage
+docs
+# Git
+.git
+.gitignore
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Docker
+Docker*
+docker*
+.dockerignore
+
+# Build artifacts
+/tmp
+/out-tsc
+# Keep dist for the build process
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# Coverage reports
+/coverage
+
+# Documentation
+/documentation
+
+# Environment-specific files
+# Include environment.*.ts files for build configurations
+# But exclude environment.ts (development config)
+# !src/environments/environment.*.ts
+# src/environments/environment.ts
