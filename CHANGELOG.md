@@ -2,10 +2,14 @@
 
 ## [Unreleased]
 
-## [0.4.1] - 2026-06-24
+## [0.4.1] - 2026-07-06
+### Added
+- Detailed node modal and an enhanced peer table for richer per-node insights.
+
 ### Changed
 - Upgraded to Angular 20 (ng-bootstrap 19, TypeScript 5.8, zone.js 0.15) on Node 22 build images; reproducible npm ci builds with committed package-lock.json.
 - UI/styling consistency refinements.
+- Production environment now uses a relative API URL, removing the unused Nginx API proxy configuration.
 
 ## [0.3.x and earlier]
 
