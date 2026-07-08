@@ -10,6 +10,11 @@
       </div>
     </div>
     <div class="card-body p-4">
+      <div *ngIf="searchError" class="alert alert-warning alert-dismissible d-flex justify-content-between align-items-center">
+        <span>{{ searchError }}</span>
+        <button type="button" class="btn-close" (click)="searchError = null" aria-label="Close"></button>
+      </div>
+
       <div *ngIf="loading" class="text-center p-5">
         <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <p class="mt-2">Loading peer data...</p>
@@ -98,17 +103,23 @@
         </table>
       </div>
 
-      <div class="d-flex justify-content-center mt-4">
+      <div *ngIf="!loading && peers.length > 0" class="d-flex justify-content-center mt-4">
         <nav aria-label="Page navigation">
           <ul class="pagination">
             <li class="page-item" [class.disabled]="currentPage === 1">
-              <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage - 1)"><i class="bi bi-chevron-left"></i></a>
+              <a class="page-link" href="javascript:void(0)" (click)="changePage(1)" title="First page"><i class="bi bi-chevron-bar-left"></i></a>
             </li>
-            <li class="page-item" *ngFor="let page of [1, 2, 3, 4, 5]" [class.active]="currentPage === page">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage - 1)" title="Previous page"><i class="bi bi-chevron-left"></i></a>
+            </li>
+            <li class="page-item" *ngFor="let page of pageWindow" [class.active]="currentPage === page">
               <a class="page-link" href="javascript:void(0)" (click)="changePage(page)">{{ page }}</a>
             </li>
-            <li class="page-item">
-              <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage + 1)"><i class="bi bi-chevron-right"></i></a>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage + 1)" title="Next page"><i class="bi bi-chevron-right"></i></a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <a class="page-link" href="javascript:void(0)" (click)="changePage(totalPages)" title="Last page"><i class="bi bi-chevron-bar-right"></i></a>
             </li>
           </ul>
         </nav>
