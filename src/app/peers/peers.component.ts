@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { PeerService } from '../services/peer.service';
 import { Peer, PeerStats } from '../models/peer.model';
 
@@ -8,16 +10,20 @@ import { Peer, PeerStats } from '../models/peer.model';
   templateUrl: './peers.component.html',
   styleUrls: ['./peers.component.scss']
 })
-export class PeersComponent implements OnInit {
+export class PeersComponent implements OnInit, OnDestroy {
   peers: Peer[] = [];
   stats: PeerStats | null = null;
   loading = true;
   isReloading = false;
   currentPage = 1;
   itemsPerPage = 20;
+  totalNodes = 0;
 
   /** Node selected for the details modal (null = modal closed). */
   selectedPeer: Peer | null = null;
+  searchError: string | null = null;
+
+  private destroy$ = new Subject<void>();
 
   constructor(private peerService: PeerService) {}
 
@@ -28,6 +34,15 @@ export class PeersComponent implements OnInit {
       this.loadPeers();
       this.loadStats();
     }, 60000);
+
+    this.peerService.searchRequests$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(term => this.searchIp(term));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   loadPeers(): void {
@@ -51,25 +66,69 @@ export class PeersComponent implements OnInit {
 
   loadStats(): void {
     this.peerService.getStats().subscribe({
-      next: (data) => { this.stats = data; },
+      next: (data) => {
+        this.stats = data;
+        this.totalNodes = data?.totalNodes || 0;
+      },
       error: (error) => { console.error('Error loading statistics:', error); }
     });
   }
 
   changePage(page: number): void {
     if (page < 1) return;
+    if (this.totalNodes && page > this.totalPages) return;
     this.currentPage = page;
     this.loadPeers();
+  }
+
+  get totalPages(): number {
+    return Math.max(1, Math.ceil(this.totalNodes / this.itemsPerPage));
+  }
+
+  /** Sliding window of up to 5 page numbers centred on the current page. */
+  get pageWindow(): number[] {
+    const size = 5;
+    const total = this.totalPages;
+    let start = Math.max(1, this.currentPage - Math.floor(size / 2));
+    const end = Math.min(total, start + size - 1);
+    start = Math.max(1, end - size + 1);
+    const pages: number[] = [];
+    for (let p = start; p <= end; p++) pages.push(p);
+    return pages;
+  }
+
+  // ---- search ----------------------------------------------------------------
+  private isValidIp(ip: string): boolean {
+    return /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/.test(ip);
+  }
+
+  searchIp(ip: string): void {
+    this.searchError = null;
+    if (!this.isValidIp(ip)) {
+      this.searchError = 'Please enter a valid IP address';
+      return;
+    }
+    this.peerService.searchIp(ip).subscribe({
+      next: (node) => {
+        if (node && node._id) {
+          this.selectedPeer = node;
+        } else {
+          this.searchError = ip + ' does not exist';
+        }
+      },
+      error: () => { this.searchError = 'Search failed for ' + ip; }
+    });
   }
 
   // ---- details modal ---------------------------------------------------------
   openDetail(peer: Peer): void { this.selectedPeer = peer; }
   closeDetail(): void { this.selectedPeer = null; }
-  /** Open the details of another node (e.g. the feeder) if it is in the list. */
+  /** Open the details of another node (e.g. the feeder); fetch it if not on this page. */
   openByIp(ip?: string): void {
     if (!ip) return;
     const p = this.peers.find(x => (x._id || x.address) === ip);
-    if (p) this.selectedPeer = p;
+    if (p) { this.selectedPeer = p; return; }
+    this.searchIp(ip);
   }
 
   // ---- overview cell helpers -------------------------------------------------

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Peer, PeerStats } from '../models/peer.model';
 import { environment } from '../../environments/environment';
 
@@ -12,9 +12,17 @@ export class PeerService {
   private apiUrl: string;
   private peerEndPoint: string;
 
+  /** Navbar → list: an IP the user wants looked up and shown in the details modal. */
+  private searchRequestSource = new Subject<string>();
+  searchRequests$ = this.searchRequestSource.asObservable();
+
   constructor(private http: HttpClient) {
     this.apiUrl = environment.apiUrl || '';
     this.peerEndPoint = 'api/nodes';
+  }
+
+  requestSearch(term: string): void {
+    this.searchRequestSource.next(term);
   }
 
   getPeers(page: number, results: number, filter: string = 'numberOfActivePeers'): Observable<Peer[]> {
@@ -26,6 +34,12 @@ export class PeerService {
     };
 
     return this.http.get<Peer[]>(`${this.apiUrl}${this.peerEndPoint}`, { params });
+  }
+
+  searchIp(ip: string): Observable<Peer | null> {
+    return this.http.get<Peer | Peer[]>(`${this.apiUrl}${this.peerEndPoint}`, { params: { ip } }).pipe(
+      map(res => (Array.isArray(res) ? res[0] : res) || null)
+    );
   }
 
   getTopNodeByRank(): Observable<Peer[]> {
