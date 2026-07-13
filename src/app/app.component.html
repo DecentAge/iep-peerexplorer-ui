@@ -18,7 +18,7 @@
             <!-- Navigation Links -->
             <ul class="navbar-nav me-3">
               <li class="nav-item active"><a class="nav-link" routerLink="/">Nodes</a></li>
-              <li class="nav-item"><a class="nav-link" [href]="blockexplorerUrl" target="_blank">Blockexplorer</a></li>
+              <li class="nav-item"><a class="nav-link" [href]="blockexplorerUrl">Blockexplorer</a></li>
             </ul>
 
             <!-- Search Bar -->
@@ -32,11 +32,8 @@
             </form>
 
             <!-- Network Type Button -->
-            <span *ngIf="networkEnvironment === 'mainnet'" class="btn btn-infinity" type="label" title="Connected to MAINNET">
-              Mainnet
-            </span>
-            <span *ngIf="networkEnvironment === 'testnet'" class="btn btn-infinity" type="label" title="Connected to TESTNET">
-              Testnet
+            <span class="btn btn-infinity" type="label" [title]="'Connected to ' + (networkEnvironment | uppercase)">
+              {{ networkEnvironment | uppercase }}
             </span>
           </div>
         </div>
@@ -55,19 +52,22 @@
 
 <div class="footer">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-7 col-sm-12 col-12">
-        <span class="navbar-brand">
-          Infinity Economics Platform
-        </span>
-      </div>
-      <div class="col-md-5 col-sm-12 col-12">
-        <span class="navbar-brand text-end float-end">
-          <span class="footerTex badge bg-secondary">Top Node : {{topNode}}</span> <br>
-          <span class="badge bg-secondary">Connected : {{connectedURL}}</span>
-          <span class="badge bg-secondary">Version : {{version}}</span>
-        </span>
-      </div>
+    <div class="footer-inner">
+      <span class="footer-brand">Infinity Economics Platform</span>
+      <dl class="footer-meta">
+        <div class="footer-meta-item">
+          <dt>Top Node</dt>
+          <dd>{{ topNode }}</dd>
+        </div>
+        <div class="footer-meta-item">
+          <dt>Connected</dt>
+          <dd>{{ connectedURL }}</dd>
+        </div>
+        <div class="footer-meta-item">
+          <dt>Version</dt>
+          <dd>{{ version }}</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </div>

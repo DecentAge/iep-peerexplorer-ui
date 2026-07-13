@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
+import { getNetworkEnvironment } from './core/network-environment';
 import { PeerService } from './services/peer.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   isCollapsed = true;
   showSearchBar = false;
   searchTerm = '';
-  networkEnvironment = 'mainnet'; // or 'testnet'
+  networkEnvironment = getNetworkEnvironment();
   topNode = 'Loading...';
   connectedURL = environment.apiUrl;
   version = 'Loading...';
