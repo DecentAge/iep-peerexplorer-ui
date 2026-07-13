@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import { getNetworkEnvironment } from './core/network-environment';
 import { PeerService } from './services/peer.service';
@@ -22,7 +21,7 @@ export class AppComponent implements OnInit {
   version = 'Loading...';
   blockexplorerUrl = environment.blockexplorerUrl;
 
-  constructor(private router: Router, private peerService: PeerService) {}
+  constructor(private peerService: PeerService) {}
 
   ngOnInit() {
     this.loadFooterData();
@@ -58,10 +57,9 @@ export class AppComponent implements OnInit {
   }
 
   search() {
-    if (this.searchTerm) {
-      // In a real app, this would navigate to a search results page or filter the peers
-      console.log('Searching for:', this.searchTerm);
-      this.router.navigate(['/'], { queryParams: { search: this.searchTerm } });
+    const term = this.searchTerm.trim();
+    if (term) {
+      this.peerService.requestSearch(term);
       this.searchTerm = '';
       this.showSearchBar = false;
     }
