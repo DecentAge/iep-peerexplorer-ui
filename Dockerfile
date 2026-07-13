@@ -30,6 +30,11 @@ COPY --from=build /build/iep-peerexplorer-ui.zip /build/iep-peerexplorer-ui.zip
 # Copy custom nginx config if needed
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Runtime env injection: envsubst fills NETWORK_ENVIRONMENT into env.config.js at container start
+COPY env.config.js.template /etc/nginx/templates/env.config.js.template
+COPY 30-nginx-iep-startup-script.sh /docker-entrypoint.d/30-nginx-iep-startup-script.sh
+RUN chmod +x /docker-entrypoint.d/30-nginx-iep-startup-script.sh
+
 # Expose port 80
 EXPOSE 80
 
