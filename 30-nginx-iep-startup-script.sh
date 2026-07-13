@@ -1,8 +1,11 @@
 #!/bin/sh
 set -eu
 
-echo "Setting environment variables /usr/share/nginx/html/env.config.js using template /etc/nginx/templates/env.config.js.template"
-envsubst < /etc/nginx/templates/env.config.js.template > /usr/share/nginx/html/env.config.js
+TEMPLATE=/etc/nginx/templates/env.config.js.template
+TARGET=/usr/share/nginx/html/env.config.js
+
+echo "Generating ${TARGET} from ${TEMPLATE} (NETWORK_ENVIRONMENT=${NETWORK_ENVIRONMENT:-})"
+envsubst '${NETWORK_ENVIRONMENT}' < "$TEMPLATE" > "$TARGET"
 
 echo "generated the following environment config:"
-cat usr/share/nginx/html/env.config.js
+cat "$TARGET"
