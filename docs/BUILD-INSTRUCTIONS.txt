@@ -1,5 +1,5 @@
 
-Build Instructions Infinity Peerexplorer v0.4.1
+Build Instructions Infinity Peerexplorer
 ----------------------------------------
 
 XIN Peerexplorer makes extensive use of nodejs. We use if for dependency managemnt, 
