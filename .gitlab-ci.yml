@@ -1,7 +1,7 @@
 include:
-  - project: 'infinity-economics/iep-docker'
-    ref: ${CI_COMMIT_REF_NAME}
-    file: '/gitlab/ci/docker-ci-cd.yml'
+  - project: 'infinity-economics/iep-release'
+    ref: develop
+    file: '/templates/docker-build-publish.yml'
 
 # The shared docker-ci-cd.yml only builds + publishes THIS image; it does not
 # repackage iep-docker, so a UI/backend change never reaches the deploy on its own.
