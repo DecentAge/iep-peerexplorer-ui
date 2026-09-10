@@ -22,7 +22,7 @@
             </ul>
 
             <!-- Search Bar -->
-            <form class="d-flex me-3">
+            <form class="d-flex">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Enter IP address" name="search" [hidden]="!showSearchBar" [(ngModel)]="searchTerm" style="border-radius: 50px 0 0 50px !important;">
                 <button class="btn btn-infinity" [ngClass]="{'btn-infinity-enabled': showSearchBar}" type="submit" (click)="(!showSearchBar) ? showSearchBar = !showSearchBar : search()" style="border-radius: 0 50px 50px 0 !important;">
@@ -32,7 +32,7 @@
             </form>
 
             <!-- Network Type Button -->
-            <span class="btn btn-infinity" type="label" [title]="'Connected to ' + (networkEnvironment | uppercase)">
+            <span class="network-label" [title]="'Connected to ' + (networkEnvironment | uppercase)">
               {{ networkEnvironment | uppercase }}
             </span>
           </div>
