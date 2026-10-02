@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+### Changed
+- Header matches the Block Explorer: the explorer tabs Nodes and Blockexplorer sit on the left next to the logo, search and network label on the right; same height, type, search icon and outline pill, so switching between the explorers no longer moves the header.
 
 ## [0.4.1] - 2026-07-06
 ### Added
