@@ -4,7 +4,7 @@
       <div class="header-wrapper">
         <!-- Logo on the left -->
         <a routerLink="/" class="navbar-brand">
-          <img src="assets/images/iep-logo.png" style="margin-left:20px;height:40px;">
+          <img src="assets/images/iep-logo.png" alt="Infinity Economics" style="height:40px;">
         </a>
 
         <!-- Toggle button for mobile -->
@@ -12,21 +12,21 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Nav items and buttons aligned to the right -->
+        <!-- Explorer tabs on the left, search and network on the right -->
         <div class="collapse navbar-collapse" id="myNavbar" [ngbCollapse]="isCollapsed">
-          <div class="ms-auto d-flex align-items-center">
-            <!-- Navigation Links -->
-            <ul class="navbar-nav me-3">
-              <li class="nav-item active"><a class="nav-link" routerLink="/">Nodes</a></li>
-              <li class="nav-item"><a class="nav-link" [href]="blockexplorerUrl">Blockexplorer</a></li>
-            </ul>
+          <ul class="navbar-nav explorer-tabs me-auto">
+            <li class="nav-item active"><a class="nav-link" routerLink="/">Nodes</a></li>
+            <li class="nav-item"><a class="nav-link" [href]="blockexplorerUrl">Blockexplorer</a></li>
+          </ul>
 
+          <div class="header-actions ms-auto d-flex align-items-center">
             <!-- Search Bar -->
             <form class="d-flex">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter IP address" name="search" [hidden]="!showSearchBar" [(ngModel)]="searchTerm" style="border-radius: 50px 0 0 50px !important;">
-                <button class="btn btn-infinity" [ngClass]="{'btn-infinity-enabled': showSearchBar}" type="submit" (click)="(!showSearchBar) ? showSearchBar = !showSearchBar : search()" style="border-radius: 0 50px 50px 0 !important;">
-                  <i class="bi bi-search"></i>
+                <input type="text" class="form-control" placeholder="Enter IP address" name="search" [hidden]="!showSearchBar" [(ngModel)]="searchTerm">
+                <button class="btn header-search-btn" [ngClass]="{'header-search-btn-enabled': showSearchBar}" type="submit" aria-label="Search" (click)="(!showSearchBar) ? showSearchBar = !showSearchBar : search()">
+                  <!-- Font Awesome Free 6.7.2 magnifying-glass (CC BY 4.0), the icon the Block Explorer shows -->
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
                 </button>
               </div>
             </form>
@@ -42,7 +42,7 @@
   </div>
 </nav>
 
-<div class="static-stats-container" style="margin-top: 80px; padding: 0 15px;">
+<div class="static-stats-container" style="margin-top: 125px; padding: 0 15px;">
   <app-static-stats></app-static-stats>
 </div>
 
