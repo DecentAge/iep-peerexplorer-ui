@@ -1,8 +1,92 @@
-// Navbar styles
+// Navbar styles. Geometry and type follow the Block Explorer header
+// (iep-blockexplorer-ui navbar.component.scss) so that switching between the
+// two explorers leaves logo, tabs and height where they were.
 .navbar-default {
   padding: 0;
-  background: linear-gradient(90deg, #e72d45 0%, #ff7800 100%);
+  background: linear-gradient(to right, #e72d45 0%, #f3931b 100%);
   border: none;
+  font-family: Montserrat, sans-serif;
+
+  // no Bootstrap class -> flex item shrinks to max-content, ms-auto gets no room
+  .navbar-inner {
+    width: 100%;
+  }
+
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar-brand {
+    height: 50px;
+    margin: 0;
+    padding: 5px 5px 5px 15px;
+
+    img {
+      margin: 0;
+    }
+  }
+
+  .explorer-tabs {
+    margin-left: 20px;
+  }
+
+  .header-actions {
+    margin-right: 15px;
+
+    .input-group {
+      position: relative;
+    }
+
+    .form-control {
+      min-width: 250px;
+      height: 34px;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 0 !important;
+    }
+
+    .header-search-btn {
+      display: flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      background: transparent;
+      border: none;
+      border-radius: 0 !important;
+
+      svg {
+        width: 14px;
+        height: 14px;
+        fill: #ffffff;
+      }
+
+      &:hover {
+        background: #2b2b2b;
+      }
+
+      &.header-search-btn-enabled {
+        background: #e72d45;
+      }
+    }
+  }
+
+  .network-label {
+    display: inline-block;
+    margin-left: 15px;
+    padding: 5px 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50px;
+  }
 
   .navbar-nav > li {
     padding: 11px 0 15px 0;
@@ -14,9 +98,63 @@
 
     > a {
       color: #ffffff;
-      font-size: 13px;
+      padding: 14px 8px;
+      font-size: 14px;
       font-weight: 600;
+      line-height: 20px;
+      white-space: nowrap;
     }
+  }
+}
+
+// The Block Explorer shrinks its tabs in these two steps; follow it so the tabs
+// do not jump when switching between the explorers on a narrower window.
+@media (min-width: 1100px) and (max-width: 1399px) {
+  .navbar-default {
+    // !important: Bootstrap's .navbar-expand-lg .nav-link padding is more specific
+    .navbar-nav > li > a {
+      padding: 14px 6px !important;
+      font-size: 12.5px;
+    }
+
+    .explorer-tabs {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1099px) {
+  .navbar-default {
+    .navbar-nav > li > a {
+      padding: 14px 4px !important;
+      font-size: 11.5px;
+    }
+
+    .explorer-tabs {
+      margin-left: 6px;
+    }
+
+    .header-actions {
+      margin-right: 8px;
+    }
+
+    .network-label {
+      margin-left: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+  }
+}
+
+// In the expanded navbar the opened search field overlays the space to its
+// left instead of widening the row, as in the Block Explorer.
+@media (min-width: 992px) {
+  .navbar-default .header-actions .form-control {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    z-index: 1;
+    width: auto;
   }
 }
 
@@ -33,6 +171,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .navbar-header {
