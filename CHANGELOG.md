@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-10-08
+### Changed
+- Maintenance and internal updates.
+
 ## [0.4.2] - 2026-10-05
 ### Changed
 - Header matches the Block Explorer: the explorer tabs Nodes and Blockexplorer sit on the left next to the logo, search and network label on the right; same height, type, search icon and outline pill, so switching between the explorers no longer moves the header.
