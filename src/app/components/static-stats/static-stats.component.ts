@@ -87,11 +87,4 @@ export class StaticStatsComponent implements OnInit {
       }
     });
   }
-
-  /**
-   * Generate a random IP address for demo purposes
-   */
-  private generateRandomIP(): string {
-    return `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
-  }
 }
