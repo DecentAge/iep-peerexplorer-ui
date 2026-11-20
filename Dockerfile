@@ -29,6 +29,7 @@ COPY --from=build /app/dist/iep-peerexplorer-ui /usr/share/nginx/html
 COPY --from=build /build/iep-peerexplorer-ui.zip /build/iep-peerexplorer-ui.zip
 # Copy custom nginx config if needed
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY security-headers.conf /etc/nginx/snippets/security-headers.conf
 
 # Runtime env injection: envsubst fills NETWORK_ENVIRONMENT into env.config.js at container start
 COPY env.config.js.template /etc/nginx/templates/env.config.js.template
