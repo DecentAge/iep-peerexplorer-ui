@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-11-22
+### Added
+- Add statistics counting script and Content-Security-Policy.
+
+### Fixed
+- Fix SPA deep links in nginx.
+
+### Removed
+- Remove dead demo code.
+
 ## [0.4.4] - 2026-10-12
 ### Changed
 - Maintenance and internal updates.
