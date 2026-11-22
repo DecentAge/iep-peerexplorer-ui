@@ -1,5 +1,5 @@
 # Stage 1: Build the Angular application
-FROM node:22-alpine AS build
+FROM node:22.23.5-alpine3.24 AS build
 WORKDIR /app
 
 # Copy package.json and package-lock.json
@@ -22,13 +22,14 @@ RUN mkdir -p /build \
     && zip -r /build/iep-peerexplorer-ui.zip .
 
 # Stage 2: Serve the application with Nginx
-FROM nginx:alpine AS deploy
+FROM nginx:1.30.7-alpine3.24 AS deploy
 
 # Copy the build output to replace the default nginx contents
 COPY --from=build /app/dist/iep-peerexplorer-ui /usr/share/nginx/html
 COPY --from=build /build/iep-peerexplorer-ui.zip /build/iep-peerexplorer-ui.zip
 # Copy custom nginx config if needed
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY security-headers.conf /etc/nginx/snippets/security-headers.conf
 
 # Runtime env injection: envsubst fills NETWORK_ENVIRONMENT into env.config.js at container start
 COPY env.config.js.template /etc/nginx/templates/env.config.js.template
